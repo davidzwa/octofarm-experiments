@@ -14,6 +14,7 @@ import { IAuthService } from "@/services/interfaces/auth.service.interface";
 import { IRoleService } from "@/services/interfaces/role-service.interface";
 import { demoUserNotAllowedInterceptor } from "@/middleware/demo.middleware";
 import { IConfigService } from "@/services/core/config.service";
+import { ApiOperation } from "@/utils/swagger/decorators";
 
 export class AuthController {
   authService: IAuthService;
@@ -46,12 +47,30 @@ export class AuthController {
     this.logger = loggerFactory(AuthController.name);
   }
 
+  @ApiOperation({
+    summary: "Create a new user",
+    description: "Creates a new user with the provided information",
+    responses: {
+      "201": {
+        description: "User created successfully",
+      },
+    },
+  })
   async login(req: Request, res: Response) {
     this.logger.debug(`Login attempt from IP ${req.ip} and user-agent ${req.headers["user-agent"]}`);
     const tokens = await this.authService.loginUser(req.body.username, req.body.password);
     return res.send(tokens);
   }
 
+  @ApiOperation({
+    summary: "Create a new user",
+    description: "Creates a new user with the provided information",
+    responses: {
+      "201": {
+        description: "User created successfully",
+      },
+    },
+  })
   async getLoginRequired(req: Request, res: Response) {
     const loginRequired = await this.settingsStore.getLoginRequired();
     const registration = this.settingsStore.isRegistrationEnabled();

@@ -2,10 +2,13 @@ import { captureException, flush } from "@sentry/node";
 import { setupEnvConfig } from "./server.env";
 import { setupServer } from "./server.core";
 import { DITokens } from "./container.tokens";
+import { setupSwagger } from "@/utils/swagger/swagger";
 
 setupEnvConfig();
 
-setupServer().then(({ httpServer, container }) => {
+setupServer().then(async ({ httpServer, container }) => {
+  await setupSwagger(httpServer);
+
   container
     .resolve(DITokens.serverHost)
     .boot(httpServer)

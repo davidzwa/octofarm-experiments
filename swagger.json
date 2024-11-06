@@ -1,0 +1,1922 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Documentation",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/auth/register": {
+      "post": {
+        "tags": [
+          "AuthController"
+        ],
+        "summary": "register",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "tags": [
+          "AuthController"
+        ],
+        "summary": "Create a new user",
+        "description": "Creates a new user with the provided information",
+        "responses": {
+          "201": {
+            "description": "User created successfully"
+          }
+        }
+      }
+    },
+    "/api/auth/login-required": {
+      "get": {
+        "tags": [
+          "AuthController"
+        ],
+        "summary": "getLoginRequired",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/auth/needs-password-change": {
+      "post": {
+        "tags": [
+          "AuthController"
+        ],
+        "summary": "needsPasswordChange",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/auth/refresh": {
+      "post": {
+        "tags": [
+          "AuthController"
+        ],
+        "summary": "refreshLogin",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/auth/verify": {
+      "post": {
+        "tags": [
+          "AuthController"
+        ],
+        "summary": "verifyLogin",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/auth/logout": {
+      "post": {
+        "tags": [
+          "AuthController"
+        ],
+        "summary": "logout",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/batch/settings/get": {
+      "post": {
+        "tags": [
+          "BatchCallController"
+        ],
+        "summary": "batchSettingsGet",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/batch/connect/usb": {
+      "post": {
+        "tags": [
+          "BatchCallController"
+        ],
+        "summary": "batchConnectUsb",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/batch/connect/socket": {
+      "post": {
+        "tags": [
+          "BatchCallController"
+        ],
+        "summary": "batchConnectSocket",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/batch/reprint/list": {
+      "post": {
+        "tags": [
+          "BatchCallController"
+        ],
+        "summary": "getLastPrintedFiles",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/batch/reprint/execute": {
+      "post": {
+        "tags": [
+          "BatchCallController"
+        ],
+        "summary": "batchReprintFiles",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/batch/toggle-enabled": {
+      "post": {
+        "tags": [
+          "BatchCallController"
+        ],
+        "summary": "batchTogglePrintersEnabled",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/camera-stream/": {
+      "get": {
+        "tags": [
+          "CameraStreamController"
+        ],
+        "summary": "list",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "CameraStreamController"
+        ],
+        "summary": "create",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/camera-stream/:id": {
+      "get": {
+        "tags": [
+          "CameraStreamController"
+        ],
+        "summary": "get",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "CameraStreamController"
+        ],
+        "summary": "delete",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "CameraStreamController"
+        ],
+        "summary": "update",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/custom-gcode/": {
+      "get": {
+        "tags": [
+          "CustomGcodeController"
+        ],
+        "summary": "list",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "CustomGcodeController"
+        ],
+        "summary": "create",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/custom-gcode/:id": {
+      "get": {
+        "tags": [
+          "CustomGcodeController"
+        ],
+        "summary": "get",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "CustomGcodeController"
+        ],
+        "summary": "delete",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "CustomGcodeController"
+        ],
+        "summary": "update",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/custom-gcode/send-emergency-m112/:printerId": {
+      "post": {
+        "tags": [
+          "CustomGcodeController"
+        ],
+        "summary": "sendEmergencyM112",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/first-time-setup/validate": {
+      "post": {
+        "tags": [
+          "FirstTimeSetupController"
+        ],
+        "summary": "validateWizard",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/first-time-setup/complete": {
+      "post": {
+        "tags": [
+          "FirstTimeSetupController"
+        ],
+        "summary": "completeWizard",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/floor/": {
+      "get": {
+        "tags": [
+          "FloorController"
+        ],
+        "summary": "list",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "FloorController"
+        ],
+        "summary": "create",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/floor/:id": {
+      "get": {
+        "tags": [
+          "FloorController"
+        ],
+        "summary": "get",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "FloorController"
+        ],
+        "summary": "delete",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/floor/:id/name": {
+      "patch": {
+        "tags": [
+          "FloorController"
+        ],
+        "summary": "updateName",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/floor/:id/floor-number": {
+      "patch": {
+        "tags": [
+          "FloorController"
+        ],
+        "summary": "updateFloorNumber",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/floor/:id/printer": {
+      "post": {
+        "tags": [
+          "FloorController"
+        ],
+        "summary": "addPrinterToFloor",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "FloorController"
+        ],
+        "summary": "removePrinterFromFloor",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/plugin/firmware-update/": {
+      "get": {
+        "tags": [
+          "PluginFirmwareUpdateController"
+        ],
+        "summary": "listUpdateState",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/plugin/firmware-update/releases/sync": {
+      "post": {
+        "tags": [
+          "PluginFirmwareUpdateController"
+        ],
+        "summary": "syncFirmwareReleasesCache",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/plugin/firmware-update/download-firmware": {
+      "post": {
+        "tags": [
+          "PluginFirmwareUpdateController"
+        ],
+        "summary": "downloadFirmware",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/plugin/firmware-update/scan": {
+      "post": {
+        "tags": [
+          "PluginFirmwareUpdateController"
+        ],
+        "summary": "scanPrinterFirmwareVersions",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/plugin/firmware-update/:id/is-plugin-installed": {
+      "get": {
+        "tags": [
+          "PluginFirmwareUpdateController"
+        ],
+        "summary": "isPluginInstalled",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/plugin/firmware-update/:id/install-firmware-update-plugin": {
+      "post": {
+        "tags": [
+          "PluginFirmwareUpdateController"
+        ],
+        "summary": "installFirmwareUpdatePlugin",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/plugin/firmware-update/:id/status": {
+      "get": {
+        "tags": [
+          "PluginFirmwareUpdateController"
+        ],
+        "summary": "getFirmwareUpdaterStatus",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/plugin/firmware-update/:id/configure-plugin-settings": {
+      "post": {
+        "tags": [
+          "PluginFirmwareUpdateController"
+        ],
+        "summary": "configurePluginSettings",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/plugin/firmware-update/:id/flash-firmware": {
+      "post": {
+        "tags": [
+          "PluginFirmwareUpdateController"
+        ],
+        "summary": "flashFirmware",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/print-completion/": {
+      "get": {
+        "tags": [
+          "PrintCompletionController"
+        ],
+        "summary": "list",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/print-completion/test": {
+      "get": {
+        "tags": [
+          "PrintCompletionController"
+        ],
+        "summary": "test",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/print-completion/contexts": {
+      "get": {
+        "tags": [
+          "PrintCompletionController"
+        ],
+        "summary": "contexts",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/print-completion/:correlationId": {
+      "get": {
+        "tags": [
+          "PrintCompletionController"
+        ],
+        "summary": "findCorrelatedEntries",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer-files/tracked-uploads": {
+      "get": {
+        "tags": [
+          "PrinterFilesController"
+        ],
+        "summary": "getTrackedUploads",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer-files/purge": {
+      "post": {
+        "tags": [
+          "PrinterFilesController"
+        ],
+        "summary": "purgeIndexedFiles",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer-files/:id": {
+      "get": {
+        "tags": [
+          "PrinterFilesController"
+        ],
+        "summary": "getFiles",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "PrinterFilesController"
+        ],
+        "summary": "deleteFileOrFolder",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer-files/:id/print": {
+      "post": {
+        "tags": [
+          "PrinterFilesController"
+        ],
+        "summary": "startPrintFile",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer-files/:id/select": {
+      "post": {
+        "tags": [
+          "PrinterFilesController"
+        ],
+        "summary": "startPrintFile",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer-files/:id/cache": {
+      "get": {
+        "tags": [
+          "PrinterFilesController"
+        ],
+        "summary": "getFilesCache",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer-files/:id/download/:path": {
+      "get": {
+        "tags": [
+          "PrinterFilesController"
+        ],
+        "summary": "downloadFile",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer-files/:id/clear": {
+      "delete": {
+        "tags": [
+          "PrinterFilesController"
+        ],
+        "summary": "clearPrinterFiles",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer-files/:id/upload": {
+      "post": {
+        "tags": [
+          "PrinterFilesController"
+        ],
+        "summary": "uploadFile",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer-group/": {
+      "get": {
+        "tags": [
+          "PrinterGroupController"
+        ],
+        "summary": "listGroups",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "PrinterGroupController"
+        ],
+        "summary": "createGroup",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer-group/:id": {
+      "get": {
+        "tags": [
+          "PrinterGroupController"
+        ],
+        "summary": "getGroup",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "PrinterGroupController"
+        ],
+        "summary": "deleteGroup",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer-group/:id/name": {
+      "patch": {
+        "tags": [
+          "PrinterGroupController"
+        ],
+        "summary": "updateGroupName",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer-group/:id/printer": {
+      "post": {
+        "tags": [
+          "PrinterGroupController"
+        ],
+        "summary": "addPrinterToGroup",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "PrinterGroupController"
+        ],
+        "summary": "removePrinterFromGroup",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer-settings/:id": {
+      "get": {
+        "tags": [
+          "PrinterSettingsController"
+        ],
+        "summary": "get",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer-settings/:id/gcode-analysis": {
+      "post": {
+        "tags": [
+          "PrinterSettingsController"
+        ],
+        "summary": "setGCodeAnalysis",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer-settings/:id/sync-printername": {
+      "post": {
+        "tags": [
+          "PrinterSettingsController"
+        ],
+        "summary": "syncPrinterName",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer/": {
+      "get": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "list",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "create",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer/batch": {
+      "post": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "createBatch",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer/plugin-list": {
+      "get": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "getPluginList",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer/:id": {
+      "get": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "getPrinter",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "update",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "delete",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer/:id/socket": {
+      "get": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "getPrinterSocketInfo",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer/:id/enabled": {
+      "patch": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "updateEnabled",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer/:id/disabled-reason": {
+      "patch": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "updatePrinterDisabledReason",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer/:id/connection": {
+      "patch": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "updateConnectionSettings",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer/:id/refresh-socket": {
+      "post": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "refreshPrinterSocket",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer/test-connection": {
+      "post": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "testConnection",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer/:id/login-details": {
+      "get": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "getPrinterLoginDetails",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer/:id/serial-connect": {
+      "post": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "sendSerialConnectCommand",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer/:id/serial-disconnect": {
+      "post": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "sendSerialDisconnectCommand",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer/:id/move": {
+      "post": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "movePrintHead",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer/:id/jog": {
+      "post": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "movePrintHead",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer/:id/home": {
+      "post": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "homeAxes",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer/:id/job/pause": {
+      "post": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "pausePrint",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer/:id/job/resume": {
+      "post": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "resumePrint",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer/:id/job/cancel": {
+      "post": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "cancelPrint",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer/:id/job/stop": {
+      "post": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "cancelPrint",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer/:id/server/restart": {
+      "post": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "restartServer",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer/:id/octoprint/server/restart": {
+      "post": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "restartServer",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer/:id/feed-rate": {
+      "patch": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "setFeedRate",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer/:id/flow-rate": {
+      "patch": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "setFlowRate",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer/:id/plugin-list": {
+      "get": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "getPrinterPluginList",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer/:id/octoprint/backup": {
+      "get": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "getOctoPrintBackupOverview",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer/:id/octoprint/backup/list": {
+      "get": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "listOctoPrintBackups",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer/:id/octoprint/backup/create": {
+      "post": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "createOctoPrintBackup",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer/:id/octoprint/backup/download": {
+      "post": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "downloadOctoPrintBackup",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer/:id/octoprint/backup/restore": {
+      "post": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "restoreOctoPrintBackup",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/printer/:id/octoprint/backup/delete": {
+      "delete": {
+        "tags": [
+          "PrinterController"
+        ],
+        "summary": "deleteOctoPrintBackup",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/server/": {
+      "get": {
+        "tags": [
+          "ServerPrivateController"
+        ],
+        "summary": "getReleaseStateInfo",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/server/client-releases": {
+      "get": {
+        "tags": [
+          "ServerPrivateController"
+        ],
+        "summary": "getClientReleases",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/server/github-rate-limit": {
+      "get": {
+        "tags": [
+          "ServerPrivateController"
+        ],
+        "summary": "getGithubRateLimit",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/server/update-client-bundle-github": {
+      "post": {
+        "tags": [
+          "ServerPrivateController"
+        ],
+        "summary": "updateClientBundleGithub",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/server/export-printers-floors-yaml": {
+      "post": {
+        "tags": [
+          "ServerPrivateController"
+        ],
+        "summary": "exportPrintersAndFloorsYaml",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/server/import-printers-floors-yaml": {
+      "post": {
+        "tags": [
+          "ServerPrivateController"
+        ],
+        "summary": "importPrintersAndFloorsYaml",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/server/git-update": {
+      "post": {
+        "tags": [
+          "ServerPrivateController"
+        ],
+        "summary": "pullGitUpdates",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/server/restart": {
+      "post": {
+        "tags": [
+          "ServerPrivateController"
+        ],
+        "summary": "restartServer",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/server/dump-fdm-monster-logs": {
+      "get": {
+        "tags": [
+          "ServerPrivateController"
+        ],
+        "summary": "dumpLogZips",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ServerPrivateController"
+        ],
+        "summary": "dumpLogZips",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/server/clear-outdated-fdm-monster-logs": {
+      "delete": {
+        "tags": [
+          "ServerPrivateController"
+        ],
+        "summary": "clearLogs",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/server/delete-all-printers": {
+      "delete": {
+        "tags": [
+          "ServerPrivateController"
+        ],
+        "summary": "deleteAllPrinters",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/": {
+      "get": {
+        "tags": [
+          "ServerPublicController"
+        ],
+        "summary": "welcome",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/test": {
+      "get": {
+        "tags": [
+          "ServerPublicController"
+        ],
+        "summary": "test",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/features": {
+      "get": {
+        "tags": [
+          "ServerPublicController"
+        ],
+        "summary": "getFeatures",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/version": {
+      "get": {
+        "tags": [
+          "ServerPublicController"
+        ],
+        "summary": "getVersion",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/settings/": {
+      "get": {
+        "tags": [
+          "SettingsController"
+        ],
+        "summary": "getSettings",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/settings/sensitive": {
+      "get": {
+        "tags": [
+          "SettingsController"
+        ],
+        "summary": "getSettingsSensitive",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/settings/sentry-diagnostics": {
+      "patch": {
+        "tags": [
+          "SettingsController"
+        ],
+        "summary": "updateSentryDiagnosticsEnabled",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/settings/experimental-moonraker-support": {
+      "put": {
+        "tags": [
+          "SettingsController"
+        ],
+        "summary": "updateMoonrakerSupport",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/settings/experimental-client-support": {
+      "put": {
+        "tags": [
+          "SettingsController"
+        ],
+        "summary": "updateClientSupport",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/settings/server": {
+      "put": {
+        "tags": [
+          "SettingsController"
+        ],
+        "summary": "updateServerSettings",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/settings/login-required": {
+      "put": {
+        "tags": [
+          "SettingsController"
+        ],
+        "summary": "updateLoginRequiredSettings",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/settings/registration-enabled": {
+      "put": {
+        "tags": [
+          "SettingsController"
+        ],
+        "summary": "updateRegistrationEnabledSettings",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/settings/credential": {
+      "put": {
+        "tags": [
+          "SettingsController"
+        ],
+        "summary": "updateCredentialSettings",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/settings/file-clean": {
+      "put": {
+        "tags": [
+          "SettingsController"
+        ],
+        "summary": "updateFileCleanSettings",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/settings/whitelist": {
+      "put": {
+        "tags": [
+          "SettingsController"
+        ],
+        "summary": "updateWhitelistSettings",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/settings/frontend": {
+      "put": {
+        "tags": [
+          "SettingsController"
+        ],
+        "summary": "updateFrontendSettings",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/settings/timeout": {
+      "put": {
+        "tags": [
+          "SettingsController"
+        ],
+        "summary": "updateTimeoutSettings",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/user/": {
+      "get": {
+        "tags": [
+          "UserController"
+        ],
+        "summary": "list",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/user/roles": {
+      "get": {
+        "tags": [
+          "UserController"
+        ],
+        "summary": "listRoles",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/user/profile": {
+      "get": {
+        "tags": [
+          "UserController"
+        ],
+        "summary": "profile",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/user/:id": {
+      "get": {
+        "tags": [
+          "UserController"
+        ],
+        "summary": "get",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "UserController"
+        ],
+        "summary": "delete",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/user/:id/set-root-user": {
+      "post": {
+        "tags": [
+          "UserController"
+        ],
+        "summary": "setRootUser",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/user/:id/set-verified": {
+      "post": {
+        "tags": [
+          "UserController"
+        ],
+        "summary": "setVerified",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/user/:id/change-username": {
+      "post": {
+        "tags": [
+          "UserController"
+        ],
+        "summary": "changeUsername",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/user/:id/change-password": {
+      "post": {
+        "tags": [
+          "UserController"
+        ],
+        "summary": "changePassword",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}
