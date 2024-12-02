@@ -3,6 +3,7 @@ import EventEmitter2 from "eventemitter2";
 import { SettingsStore } from "@/state/settings.store";
 import { AxiosInstance } from "axios";
 import { LoggerService } from "@/handlers/logger";
+import { ISocketLogin } from "@/shared/dtos/socket-login.dto";
 
 export class BambuMqttAdapter {
   readonly eventEmitter2: EventEmitter2;
@@ -26,4 +27,8 @@ export class BambuMqttAdapter {
     this.eventEmitter2 = eventEmitter2;
     this.logger = loggerFactory(BambuMqttAdapter.name);
   }
+
+  registerCredentials(socketLogin: ISocketLogin) {}
+
+  resetSocketState() {}
 }

@@ -83,11 +83,11 @@ export class PrinterSocketStore {
         await this.handlePrinterCreated({ printer: doc });
       } catch (e) {
         captureException(e);
-        this.logger.error("PrinterSocketStore failed to construct new OctoPrint socket.", errorSummary(e));
+        this.logger.error("PrinterSocketStore failed to construct new printer socket.", errorSummary(e));
       }
     }
 
-    this.logger.log(`Loaded ${Object.keys(this.printerSocketAdaptersById).length} printer OctoPrint sockets`);
+    this.logger.log(`Loaded ${Object.keys(this.printerSocketAdaptersById).length} printer sockets`);
   }
 
   listPrinterSockets() {

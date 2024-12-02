@@ -21,6 +21,7 @@ export interface ServerSettingsDto {
   loginRequired: boolean;
   debugSettings: DebugSettingsDto;
   experimentalMoonrakerSupport: boolean;
+  experimentalBambuSupport: boolean;
   experimentalTypeormSupport: boolean;
   experimentalClientSupport: boolean;
   experimentalThumbnailSupport: boolean;
