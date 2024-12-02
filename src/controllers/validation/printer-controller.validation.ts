@@ -1,5 +1,5 @@
 import { apiKeyLengthMaxDefault, apiKeyLengthMinDefault } from "@/constants/service.constants";
-import { MoonrakerType, OctoprintType } from "@/services/printer-api.interface";
+import { BambuType, MoonrakerType, OctoprintType } from "@/services/printer-api.interface";
 
 export const flowRateRules = {
   flowRate: "required|between:75,125|integer",
@@ -10,7 +10,7 @@ export const feedRateRules = {
 };
 
 export const testPrinterApiRules = {
-  printerType: `required|integer|in:${OctoprintType},${MoonrakerType}`,
+  printerType: `required|integer|in:${OctoprintType},${MoonrakerType},${BambuType}`,
   apiKey: `requiredIf:printerType,${OctoprintType}|length:${apiKeyLengthMaxDefault},${apiKeyLengthMinDefault}|alphaDash`,
   printerURL: "required|httpurl",
 };
@@ -24,7 +24,7 @@ export const updatePrinterEnabledRule = {
 };
 
 export const updatePrinterConnectionSettingRules = {
-  printerType: `required|integer|in:${OctoprintType},${MoonrakerType}`,
+  printerType: `required|integer|in:${OctoprintType},${MoonrakerType},${BambuType}`,
   printerURL: "required|httpurl",
   apiKey: `requiredIf:printerType,${OctoprintType}|length:${apiKeyLengthMaxDefault},${apiKeyLengthMinDefault}|alphaDash`,
 };
