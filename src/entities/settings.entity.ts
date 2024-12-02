@@ -29,6 +29,7 @@ export class Settings extends BaseEntity {
     registration: boolean;
     experimentalMoonrakerSupport: boolean;
     experimentalClientSupport: boolean;
+    experimentalBambuSupport: boolean;
     experimentalThumbnailSupport: boolean;
   };
 

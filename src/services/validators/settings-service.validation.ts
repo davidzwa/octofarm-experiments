@@ -48,6 +48,10 @@ export const moonrakerSupportRules = {
   enabled: "required|boolean",
 };
 
+export const bambuSupportRules = {
+  enabled: "required|boolean",
+};
+
 export const thumbnailSupportRules = {
   enabled: "required|boolean",
 };

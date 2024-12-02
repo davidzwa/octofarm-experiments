@@ -4,6 +4,7 @@ import { AppConstants } from "@/server.constants";
 import { ROLES } from "@/constants/authorization.constants";
 import { validateInput } from "@/handlers/validators";
 import {
+  bambuSupportRules,
   clientNextRules,
   credentialSettingPatchRules,
   fileCleanSettingsUpdateRules,
@@ -21,7 +22,7 @@ import { LoggerService } from "@/handlers/logger";
 import { demoUserNotAllowed, demoUserNotAllowedInterceptor } from "@/middleware/demo.middleware";
 import { IConfigService } from "@/services/core/config.service";
 import { PrinterCache } from "@/state/printer.cache";
-import { MoonrakerType } from "@/services/printer-api.interface";
+import { BambuType, MoonrakerType } from "@/services/printer-api.interface";
 import { IPrinterService } from "@/services/interfaces/printer.service.interface";
 import { PrinterThumbnailCache } from "@/state/printer-thumbnail.cache";
 
@@ -99,6 +100,20 @@ export class SettingsController {
     res.send(result);
   }
 
+  async updateBambuSupport(req: Request, res: Response) {
+    const { enabled } = await validateInput(req.body, bambuSupportRules);
+    const result = await this.settingsStore.setExperimentalBambuSupport(enabled);
+
+    if (!enabled) {
+      const printers = await this.printerCache.listCachedPrinters(false);
+      const klipperPrinters = printers.filter((p) => p.printerType === BambuType);
+      for (const printer of klipperPrinters) {
+        await this.printerService.updateEnabled(printer.id, false);
+      }
+    }
+    res.send(result);
+  }
+
   async updateThumbnailSupport(req: Request, res: Response) {
     const { enabled } = await validateInput(req.body, thumbnailSupportRules);
     const result = await this.settingsStore.setExperimentalThumbnailSupport(enabled);
@@ -168,6 +183,7 @@ export default createController(SettingsController)
     .get("/sensitive", "getSettingsSensitive", { before: [authorizeRoles([ROLES.ADMIN]), demoUserNotAllowed] })
     .patch("/sentry-diagnostics", "updateSentryDiagnosticsEnabled", demoUserNotAllowedInterceptor)
     .put("/experimental-moonraker-support", "updateMoonrakerSupport", { before: [authorizeRoles([ROLES.ADMIN]), demoUserNotAllowed] })
+    .put("/experimental-bambu-support", "updateBambuSupport", { before: [authorizeRoles([ROLES.ADMIN]), demoUserNotAllowed] })
     .put("/experimental-thumbnail-support", "updateThumbnailSupport", { before: [authorizeRoles([ROLES.ADMIN]), demoUserNotAllowed] })
     .put("/experimental-client-support", "updateClientSupport", { before: [authorizeRoles([ROLES.ADMIN]), demoUserNotAllowed] })
     .put("/server", "updateServerSettings", { before: [authorizeRoles([ROLES.ADMIN]), demoUserNotAllowed] })

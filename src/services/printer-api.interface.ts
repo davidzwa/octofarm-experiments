@@ -4,10 +4,12 @@ import { ServerConfigDto } from "@/services/moonraker/dto/server/server-config.d
 import { SettingsDto } from "@/services/octoprint/dto/settings/settings.dto";
 import { ConnectionState } from "@/services/octoprint/dto/connection/connection-state.type";
 import { IdType } from "@/shared.constants";
+import { BambuApi } from "@/services/bambu.api";
 
-export const OctoprintType = 0;
-export const MoonrakerType = 1;
-export type PrinterType = typeof OctoprintType | typeof MoonrakerType;
+export const OctoprintType = 0 as const;
+export const MoonrakerType = 1 as const;
+export const BambuType = 2 as const;
+export type PrinterType = typeof OctoprintType | typeof MoonrakerType | typeof BambuType;
 
 export interface StatusFlags {
   connected: boolean;

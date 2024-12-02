@@ -68,6 +68,10 @@ export class ServerPublicController {
   getFeatures(req: Request, res: Response) {
     const serverSettings = this.settingsStore.getServerSettings();
     const moonrakerEnabled = serverSettings.experimentalMoonrakerSupport;
+    const bambuEnabled = serverSettings.experimentalBambuSupport;
+
+    const services = ["octoprint"].concat(moonrakerEnabled ? ["klipper"] : []).concat(bambuEnabled ? ["bambu"] : []);
+
     res.send({
       batchReprintCalls: {
         available: true,
@@ -129,7 +133,7 @@ export class ServerPublicController {
         available: true,
         version: 1,
         subFeatures: {
-          types: moonrakerEnabled ? ["octoprint", "klipper"] : ["octoprint"],
+          types: services,
         },
       },
     });

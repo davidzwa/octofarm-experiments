@@ -1,4 +1,4 @@
-import { IPrinterApi, MoonrakerType, OctoprintType } from "@/services/printer-api.interface";
+import { BambuType, IPrinterApi, MoonrakerType, OctoprintType } from "@/services/printer-api.interface";
 import { DITokens } from "@/container.tokens";
 import { LoginDto } from "@/services/interfaces/login.dto";
 import { PrinterCache } from "@/state/printer.cache";
@@ -22,6 +22,8 @@ export class PrinterApiFactory {
       printerApi = this.cradle[DITokens.octoprintApi] as IPrinterApi;
     } else if (login.printerType === MoonrakerType) {
       printerApi = this.cradle[DITokens.moonrakerApi] as IPrinterApi;
+    } else if (login.printerType === BambuType) {
+      printerApi = this.cradle[DITokens.bambuApi] as IPrinterApi;
     } else {
       throw new Error("PrinterType is unknown, cant pick the right socket adapter");
     }
