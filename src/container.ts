@@ -41,7 +41,7 @@ import { configureCacheManager } from "./handlers/cache-manager";
 import { ConfigService } from "./services/core/config.service";
 import { PrintCompletionSocketIoTask } from "./tasks/print-completion.socketio.task";
 import { PrintCompletionService } from "./services/mongoose/print-completion.service";
-import { PrintCompletionService as PrintCompletionService2 } from "./services/orm/print-completion.service";
+import { PrintHistoryService as PrintCompletionService2 } from "./services/orm/print-history.service";
 import { SocketIoGateway } from "./state/socket-io.gateway";
 import { ClientBundleService } from "./services/core/client-bundle.service";
 import { FloorService } from "./services/mongoose/floor.service";

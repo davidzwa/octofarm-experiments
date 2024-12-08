@@ -1,18 +1,20 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, Relation } from "typeorm";
 import { Printer } from "@/entities/printer.entity";
 import { BaseEntity } from "@/entities/base.entity";
-import { PrintCompletionContextDto } from "@/services/interfaces/print-completion-context.dto";
 
 @Entity()
-export class PrintCompletion extends BaseEntity {
+export class PrintLog extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 
   @Column()
   fileName!: string;
 
-  @CreateDateColumn({ type: "int" })
-  createdAt!: number;
+  @CreateDateColumn()
+  createdAt!: Date;
+
+  @Column()
+  endedAt!: Date;
 
   @Column()
   status!: string;
@@ -25,11 +27,5 @@ export class PrintCompletion extends BaseEntity {
   printerId!: number;
 
   @Column({ nullable: true })
-  printerReference?: string;
-
-  @Column({ nullable: true })
-  completionLog?: string;
-
-  @Column({ type: "simple-json", nullable: true })
-  context!: PrintCompletionContextDto;
+  printerName?: string;
 }

@@ -5,13 +5,13 @@ import { AppConstants } from "@/server.constants";
 import { EVENT_TYPES } from "@/services/octoprint/constants/octoprint-websocket.constants";
 import { DITokens } from "@/container.tokens";
 import { SqliteIdType } from "@/shared.constants";
-import { PrintCompletionDto } from "@/services/interfaces/print-completion.dto";
-import { IPrintCompletionService } from "@/services/interfaces/print-completion.interface";
+import { PrintHistoryDto } from "@/services/interfaces/print-history.dto";
+import { IPrintHistoryService } from "@/services/interfaces/print-history.interface";
 import supertest from "supertest";
 import { PrintCompletionController } from "@/controllers/print-completion.controller";
 import { createTestPrinter } from "./test-data/create-printer";
 
-let printCompletionService: IPrintCompletionService<SqliteIdType, PrintCompletionDto>;
+let printCompletionService: IPrintHistoryService<SqliteIdType, PrintHistoryDto>;
 const listRoute = `${AppConstants.apiRoute}/print-completion`;
 const getCompletionEntryRoute = (corrId: string) => `${listRoute}/${corrId}`;
 const contextsRoute = `${listRoute}/contexts`;

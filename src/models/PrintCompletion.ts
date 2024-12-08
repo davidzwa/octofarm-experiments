@@ -1,7 +1,7 @@
 import { model, Schema } from "mongoose";
 import { PrintCompletionContextDto } from "@/services/interfaces/print-completion-context.dto";
 
-export interface IPrintCompletion {
+export interface IPrintLog {
   id: string;
   fileName: string;
   createdAt: number;
@@ -11,7 +11,7 @@ export interface IPrintCompletion {
   context: PrintCompletionContextDto;
 }
 
-const PrintCompletionSchema = new Schema<IPrintCompletion>({
+const PrintCompletionSchema = new Schema<IPrintLog>({
   fileName: {
     type: String,
     required: true,

@@ -1,8 +1,8 @@
 import { BaseService } from "@/services/orm/base.service";
-import { PrintCompletion } from "@/entities";
-import { CreatePrintCompletionDto, PrintCompletionContext, PrintCompletionDto } from "@/services/interfaces/print-completion.dto";
+import { PrintLog } from "@/entities";
+import { CreatePrintHistoryDto, PrintHistoryDto } from "@/services/interfaces/print-history.dto";
 import { SqliteIdType } from "@/shared.constants";
-import { IPrintCompletionService } from "@/services/interfaces/print-completion.interface";
+import { IPrintHistoryService } from "@/services/interfaces/print-history.interface";
 import { In, Not } from "typeorm";
 import { EVENT_TYPES } from "@/services/octoprint/constants/octoprint-websocket.constants";
 import { groupArrayBy } from "@/utils/array.util";
@@ -11,35 +11,33 @@ import { ILoggerFactory } from "@/handlers/logger-factory";
 import { LoggerService } from "@/handlers/logger";
 import { AnalyzedCompletions, processCompletions } from "@/services/mongoose/print-completion.shared";
 
-export class PrintCompletionService
-  extends BaseService(PrintCompletion, PrintCompletionDto<SqliteIdType>)
-  implements IPrintCompletionService<SqliteIdType, PrintCompletion>
+export class PrintHistoryService
+  extends BaseService(PrintLog, PrintHistoryDto<SqliteIdType>)
+  implements IPrintHistoryService<SqliteIdType, PrintLog>
 {
   logger: LoggerService;
 
   constructor({ typeormService, loggerFactory }: { typeormService: TypeormService; loggerFactory: ILoggerFactory }) {
     super({ typeormService });
-    this.logger = loggerFactory(PrintCompletionService.name);
+    this.logger = loggerFactory(PrintHistoryService.name);
   }
 
-  toDto(entity: PrintCompletion): PrintCompletionDto<SqliteIdType> {
+  toDto(entity: PrintLog): PrintHistoryDto<SqliteIdType> {
     return {
       id: entity.id,
-      completionLog: entity.completionLog,
-      context: entity.context,
       fileName: entity.fileName,
       createdAt: entity.createdAt,
-      printerReference: entity.printerReference,
+      printerName: entity.printerName,
       status: entity.status,
       printerId: entity.printerId,
     };
   }
 
-  async create(input: CreatePrintCompletionDto<SqliteIdType>) {
+  async create(input: CreatePrintHistoryDto<SqliteIdType>) {
     return await super.create(input);
   }
 
-  async findPrintCompletion(correlationId: string) {
+  async findPrintLog(correlationId: string) {
     const completions = await this.repository.findBy({});
     return completions.filter((c) => c.context?.correlationId === correlationId);
   }
@@ -72,7 +70,7 @@ export class PrintCompletionService
     return processCompletions(completions);
   }
 
-  async loadPrintContexts(): Promise<Record<string, PrintCompletion[]>> {
+  async loadPrintContexts(): Promise<Record<string, PrintLog[]>> {
     const completions = await this.repository.find({
       where: {
         status: Not(In([EVENT_TYPES.PrintDone, EVENT_TYPES.PrintFailed])),

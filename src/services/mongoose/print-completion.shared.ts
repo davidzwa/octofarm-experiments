@@ -1,7 +1,7 @@
 import { groupArrayBy } from "@/utils/array.util";
 import { EVENT_TYPES } from "@/services/octoprint/constants/octoprint-websocket.constants";
 import { IdType } from "@/shared.constants";
-import { PrintCompletionDto } from "@/services/interfaces/print-completion.dto";
+import { PrintHistoryDto } from "@/services/interfaces/print-history.dto";
 
 const durationDayMSec = 24 * 60 * 60 * 1000;
 
@@ -24,19 +24,19 @@ export interface AnalyzedCompletions {
   eventCount: number;
   printCount: number;
   failureCount: number;
-  lastFailure: Partial<PrintCompletionDto>;
+  lastFailure: Partial<PrintHistoryDto>;
   failureEventsLastWeek: number;
   failureEventsLast48H: number;
   failureEventsLast24H: number;
   successCount: number;
-  lastSuccess: Partial<PrintCompletionDto>;
+  lastSuccess: Partial<PrintHistoryDto>;
   successEventsLastWeek: number;
   successEventsLast48H: number;
   successEventsLast24H: number;
 
   correlationIds: IdType[];
 
-  printEvents: PrintCompletionDto[];
+  printEvents: PrintHistoryDto[];
 
   printJobs: PrintJobEvents[];
 }

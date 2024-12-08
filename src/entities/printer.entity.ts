@@ -1,6 +1,6 @@
 import { IsAlphanumeric } from "class-validator";
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, Relation } from "typeorm";
-import { PrintCompletion } from "@/entities/print-completion.entity";
+import { PrintLog } from "@/entities/print-log.entity";
 import { BaseEntity } from "@/entities/base.entity";
 import { PrinterGroup } from "@/entities/printer-group.entity";
 import { OctoprintType } from "@/services/printer-api.interface";
@@ -39,8 +39,8 @@ export class Printer extends BaseEntity {
   })
   assignee?: string;
 
-  @OneToMany(() => PrintCompletion, (pc) => pc.printer)
-  printCompletions!: Relation<PrintCompletion>[];
+  @OneToMany(() => PrintLog, (pc) => pc.printer)
+  printCompletions!: Relation<PrintLog>[];
 
   @OneToMany(() => PrinterGroup, (pc) => pc.printer)
   printerGroups!: Relation<PrinterGroup>[];

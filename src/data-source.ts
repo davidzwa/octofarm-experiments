@@ -8,7 +8,7 @@ import { Floor } from "@/entities/floor.entity";
 import { FloorPosition } from "@/entities/floor-position.entity";
 import { Printer } from "@/entities/printer.entity";
 import { Settings } from "@/entities/settings.entity";
-import { Permission, PrintCompletion, RefreshToken, User } from "@/entities";
+import { Permission, PrintLog, RefreshToken, User } from "@/entities";
 import { CameraStream } from "@/entities/camera-stream.entity";
 import { CustomGcode } from "@/entities/custom-gcode.entity";
 import { Role } from "@/entities/role.entity";
@@ -49,7 +49,7 @@ export const AppDataSource = new DataSource({
     Role,
     Permission,
     RefreshToken,
-    PrintCompletion,
+    PrintLog,
     UserRole,
     Group,
     PrinterGroup,

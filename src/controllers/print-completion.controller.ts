@@ -5,17 +5,17 @@ import { PERMS } from "@/constants/authorization.constants";
 import { validateInput } from "@/handlers/validators";
 import { PrintCompletionSocketIoTask } from "@/tasks/print-completion.socketio.task";
 import { Request, Response } from "express";
-import { IPrintCompletionService } from "@/services/interfaces/print-completion.interface";
+import { IPrintHistoryService } from "@/services/interfaces/print-history.interface";
 
 export class PrintCompletionController {
-  private printCompletionService: IPrintCompletionService;
+  private printCompletionService: IPrintHistoryService;
   private printCompletionSocketIoTask: PrintCompletionSocketIoTask;
 
   constructor({
     printCompletionService,
     printCompletionSocketIoTask,
   }: {
-    printCompletionService: IPrintCompletionService;
+    printCompletionService: IPrintHistoryService;
     printCompletionSocketIoTask: PrintCompletionSocketIoTask;
   }) {
     this.printCompletionService = printCompletionService;
@@ -37,7 +37,7 @@ export class PrintCompletionController {
 
   async findCorrelatedEntries(req: Request, res: Response) {
     const { correlationId } = await validateInput(req.params, { correlationId: "required|string" });
-    const result = await this.printCompletionService.findPrintCompletion(correlationId);
+    const result = await this.printCompletionService.findPrintLog(correlationId);
     res.send(result);
   }
 

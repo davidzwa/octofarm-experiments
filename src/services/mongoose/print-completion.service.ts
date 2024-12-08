@@ -5,19 +5,19 @@ import { EVENT_TYPES } from "../octoprint/constants/octoprint-websocket.constant
 import { LoggerService } from "@/handlers/logger";
 import { ILoggerFactory } from "@/handlers/logger-factory";
 import { MongoIdType } from "@/shared.constants";
-import { IPrintCompletionService } from "@/services/interfaces/print-completion.interface";
-import { CreatePrintCompletionDto, PrintCompletionContext, PrintCompletionDto } from "@/services/interfaces/print-completion.dto";
-import { IPrintCompletion } from "@/models/PrintCompletion";
+import { IPrintHistoryService } from "@/services/interfaces/print-history.interface";
+import { CreatePrintHistoryDto, PrintCompletionContext, PrintHistoryDto } from "@/services/interfaces/print-history.dto";
+import { IPrintLog } from "@/models/PrintCompletion";
 import { processCompletions } from "@/services/mongoose/print-completion.shared";
 
-export class PrintCompletionService implements IPrintCompletionService<MongoIdType> {
+export class PrintCompletionService implements IPrintHistoryService<MongoIdType> {
   logger: LoggerService;
 
   constructor({ loggerFactory }: { loggerFactory: ILoggerFactory }) {
     this.logger = loggerFactory(PrintCompletionService.name);
   }
 
-  toDto(entity: IPrintCompletion): PrintCompletionDto<MongoIdType> {
+  toDto(entity: IPrintLog): PrintHistoryDto<MongoIdType> {
     return {
       id: entity.id,
       completionLog: entity.completionLog,
@@ -29,7 +29,7 @@ export class PrintCompletionService implements IPrintCompletionService<MongoIdTy
     };
   }
 
-  async create(input: CreatePrintCompletionDto<MongoIdType>) {
+  async create(input: CreatePrintHistoryDto<MongoIdType>) {
     const { printerId, fileName, completionLog, status, context } = await validateInput(input, createPrintCompletionRules);
 
     return PrintCompletion.create({
@@ -46,7 +46,7 @@ export class PrintCompletionService implements IPrintCompletionService<MongoIdTy
     return PrintCompletion.find({});
   }
 
-  async findPrintCompletion(correlationId: string) {
+  async findPrintLog(correlationId: string) {
     return PrintCompletion.find({
       "context.correlationId": correlationId,
     });
