@@ -78,10 +78,9 @@ export class PrinterWebsocketRestoreTask {
     }
 
     const duration = Date.now() - startTime;
-    if (this.settingsStore.getSettingsSensitive()?.server?.debugSettings.debugSocketRetries) {
-      this.logger.log(
-        `Reset ${resetAdapterIds.length} closed/aborted sockets and detected ${silentSocketIds.length} silent sockets (duration ${duration}ms)`
-      );
-    }
+
+    this.logger.log(
+      `Reset ${resetAdapterIds.length} closed/aborted sockets and detected ${silentSocketIds.length} silent sockets (duration ${duration}ms)`
+    );
   }
 }

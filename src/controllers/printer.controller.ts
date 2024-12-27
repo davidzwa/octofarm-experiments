@@ -217,8 +217,12 @@ export class PrinterController {
   @route("/:id/refresh-socket")
   async refreshPrinterSocket(req: Request, res: Response) {
     const { currentPrinterId } = getScopedPrinter(req);
+    this.logger.log(`Refresh called by user for printer ${this.printerApi.login.printerURL} and id ${currentPrinterId}`);
+
     this.printerSocketStore.reconnectOctoPrint(currentPrinterId);
     await this.printerEventsCache.deletePrinterSocketEvents(currentPrinterId);
+
+    this.logger.log(`Refresh request returned`);
     res.send({});
   }
 

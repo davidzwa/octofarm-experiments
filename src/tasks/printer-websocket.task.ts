@@ -36,8 +36,7 @@ export class PrinterWebsocketTask {
   async run() {
     const startTime = Date.now();
     const result = await this.printerSocketStore.reconnectPrinterSockets();
-    if (this.settingsStore.getDebugSettingsSensitive()?.debugSocketReconnect) {
-      this.logger.log(`Socket reconnect (${Date.now() - startTime}ms)`, result);
-    }
+
+    this.logger.log(`Socket reconnect (${Date.now() - startTime}ms)`, result);
   }
 }
