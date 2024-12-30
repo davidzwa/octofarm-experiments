@@ -12,7 +12,7 @@ import { TaskManagerService } from "./services/core/task-manager.service";
 import { GithubService } from "./services/core/github.service";
 import { FileCache } from "./state/file.cache";
 import { SocketIoTask } from "./tasks/socketio.task";
-import { AdapterFactory } from "./services/adapter.factory";
+import { PrinterAdapterFactory } from "./services/printer-adapter.factory";
 import { PrinterFilesStore } from "./state/printer-files.store";
 import { configureEventEmitter } from "./handlers/event-emitter";
 import { AppConstants } from "./server.constants";
@@ -104,7 +104,7 @@ export function configureContainer(isSqlite: boolean = false) {
     [di.serverVersion]: asFunction(() => {
       return process.env[AppConstants.VERSION_KEY];
     }),
-    [di.adapterFactory]: asClass(AdapterFactory).transient(), // Factory function, transient on purpose!
+    [di.printerAdapterFactory]: asClass(PrinterAdapterFactory).transient(), // Factory function, transient on purpose!
 
     // V1.6.0 capable services
     ...config(di.typeormService, isSqlite, asClass(TypeormService).singleton(), asValue(null)),

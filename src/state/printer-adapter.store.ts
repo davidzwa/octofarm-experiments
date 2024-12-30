@@ -2,7 +2,7 @@ import { captureException } from "@sentry/node";
 import { errorSummary } from "@/utils/error.utils";
 import { printerEvents } from "@/constants/event.constants";
 import EventEmitter2 from "eventemitter2";
-import { AdapterFactory } from "@/services/adapter.factory";
+import { PrinterAdapterFactory } from "@/services/printer-adapter.factory";
 import { PrinterCache } from "@/state/printer.cache";
 import { LoggerService } from "@/handlers/logger";
 import { ConfigService } from "@/services/core/config.service";
@@ -15,7 +15,7 @@ import { IWebsocketAdapter } from "@/services/websocket-adapter.interface";
 
 export class PrinterAdapterStore {
   socketIoGateway: SocketIoGateway;
-  adapterFactory: AdapterFactory;
+  printerAdapterFactory: PrinterAdapterFactory;
   eventEmitter2: EventEmitter2;
   printerCache: PrinterCache;
   printerAdaptersById: Record<string, IWebsocketAdapter> = {};
@@ -24,7 +24,7 @@ export class PrinterAdapterStore {
   settingsStore: SettingsStore;
 
   constructor({
-    adapterFactory,
+    printerAdapterFactory,
     socketIoGateway,
     settingsStore,
     eventEmitter2,
@@ -32,7 +32,7 @@ export class PrinterAdapterStore {
     loggerFactory,
     configService,
   }: {
-    adapterFactory: AdapterFactory;
+    printerAdapterFactory: PrinterAdapterFactory;
     socketIoGateway: SocketIoGateway;
     settingsStore: SettingsStore;
     eventEmitter2: EventEmitter2;
@@ -42,7 +42,7 @@ export class PrinterAdapterStore {
   }) {
     this.printerCache = printerCache;
     this.socketIoGateway = socketIoGateway;
-    this.adapterFactory = adapterFactory;
+    this.printerAdapterFactory = printerAdapterFactory;
     this.eventEmitter2 = eventEmitter2;
     this.settingsStore = settingsStore;
     this.logger = loggerFactory(PrinterAdapterStore.name);
@@ -117,7 +117,7 @@ export class PrinterAdapterStore {
     }
 
     if (!foundAdapter) {
-      foundAdapter = this.adapterFactory.createInstance(printer.printerType);
+      foundAdapter = this.printerAdapterFactory.createInstance(printer.printerType);
       this.printerAdaptersById[id] = foundAdapter;
     } else {
       // TODO can we instead let the adapter reset itself instead?

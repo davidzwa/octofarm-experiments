@@ -4,7 +4,7 @@ import { createTestPrinterRules } from "./validation/create-test-printer.validat
 import { octoPrintEvent, WsMessage } from "@/services/octoprint/octoprint-websocket.adapter";
 import { AppConstants } from "@/server.constants";
 import { SocketIoGateway } from "@/state/socket-io.gateway";
-import { AdapterFactory } from "@/services/adapter.factory";
+import { PrinterAdapterFactory } from "@/services/printer-adapter.factory";
 import EventEmitter2 from "eventemitter2";
 import { LoggerService } from "@/handlers/logger";
 import { ILoggerFactory } from "@/handlers/logger-factory";
@@ -20,7 +20,7 @@ import { printerEvents } from "@/constants/event.constants";
 export class TestPrinterAdapterStore {
   testSocket: IWebsocketAdapter;
   socketIoGateway: SocketIoGateway;
-  socketFactory: AdapterFactory;
+  socketFactory: PrinterAdapterFactory;
   eventEmitter2: EventEmitter2;
   logger: LoggerService;
 
@@ -30,7 +30,7 @@ export class TestPrinterAdapterStore {
     eventEmitter2,
     loggerFactory,
   }: {
-    socketFactory: AdapterFactory;
+    socketFactory: PrinterAdapterFactory;
     socketIoGateway: SocketIoGateway;
     eventEmitter2: EventEmitter2;
     loggerFactory: ILoggerFactory;

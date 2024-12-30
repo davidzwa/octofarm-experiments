@@ -42,7 +42,7 @@ export const DITokens = {
   moonrakerApi: "moonrakerApi",
   moonrakerClient: "moonrakerClient",
   cameraStreamService: "cameraStreamService",
-  adapterFactory: "adapterFactory",
+  printerAdapterFactory: "printerAdapterFactory",
   printerApiFactory: "printerApiFactory",
   printerLogin: "printerLogin",
   batchCallService: "batchCallService",
