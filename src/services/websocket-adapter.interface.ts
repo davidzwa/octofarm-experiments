@@ -9,21 +9,18 @@ export interface IWebsocketAdapter<T = IdType> {
   socketState: SocketState;
   apiState: ApiState;
 
-  needsReopen(): boolean;
+  registerCredentials(socketLogin: ISocketLogin): void;
 
-  needsSetup(): boolean;
+  initSession(): Promise<void>;
 
-  needsReauth(): boolean;
+  // Reload or schedule reload
+  // reconnect(): Promise<void>;
 
   reauthSession(): void;
-
-  registerCredentials(socketLogin: ISocketLogin): void;
 
   open(): void;
 
   close(): void;
-
-  setupSocketSession(): Promise<void>;
 
   resetSocketState(): void;
 

@@ -69,7 +69,7 @@ export class PrinterFileCleanTask {
       }
       if (errorPrinters.length > 0) {
         this.logger.error(
-          `Error loading some files, ${errorPrinters.length} printer(s) did not respond or returned an unexpected status code. Those will depend on previously cached files.`
+          `Error loading some files, ${errorPrinters.length} printer(s) did not respond or returned an unexpected status code.`
         );
       }
 

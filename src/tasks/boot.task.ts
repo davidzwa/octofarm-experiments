@@ -9,7 +9,7 @@ import { MulterService } from "@/services/core/multer.service";
 import { SettingsStore } from "@/state/settings.store";
 import { FloorStore } from "@/state/floor.store";
 import { ConfigService } from "@/services/core/config.service";
-import { PrinterSocketStore } from "@/state/printer-socket.store";
+import { PrinterAdapterStore } from "@/state/printer-adapter.store";
 import { PrinterFilesStore } from "@/state/printer-files.store";
 import { PermissionService } from "@/services/mongoose/permission.service";
 import { RoleService } from "@/services/mongoose/role.service";
@@ -28,14 +28,13 @@ export class BootTask {
   settingsStore: SettingsStore;
   settingsService: ISettingsService;
   multerService: MulterService;
-  printerSocketStore: PrinterSocketStore;
+  printerAdapterStore: PrinterAdapterStore;
   printerFilesStore: PrinterFilesStore;
   permissionService: PermissionService;
   roleService: RoleService;
   userService: UserService;
   pluginRepositoryCache: PluginRepositoryCache;
   floorStore: FloorStore;
-  pluginFirmwareUpdateService: PluginFirmwareUpdateService;
   clientBundleService: ClientBundleService;
   configService: ConfigService;
   isTypeormMode: boolean;
@@ -48,7 +47,7 @@ export class BootTask {
     settingsService,
     settingsStore,
     multerService,
-    printerSocketStore,
+    printerAdapterStore,
     printerFilesStore,
     permissionService,
     roleService,
@@ -67,7 +66,7 @@ export class BootTask {
     settingsService: ISettingsService;
     settingsStore: SettingsStore;
     multerService: MulterService;
-    printerSocketStore: PrinterSocketStore;
+    printerAdapterStore: PrinterAdapterStore;
     printerFilesStore: PrinterFilesStore;
     permissionService: PermissionService;
     roleService: RoleService;
@@ -87,7 +86,7 @@ export class BootTask {
     this.settingsService = settingsService;
     this.settingsStore = settingsStore;
     this.multerService = multerService;
-    this.printerSocketStore = printerSocketStore;
+    this.printerAdapterStore = printerAdapterStore;
     this.printerFilesStore = printerFilesStore;
     this.permissionService = permissionService;
     this.roleService = roleService;
@@ -167,8 +166,9 @@ export class BootTask {
 
     this.logger.log("Clearing upload folder");
     this.multerService.clearUploadsFolder();
+
     this.logger.log("Loading printer sockets");
-    await this.printerSocketStore.loadPrinterSockets(); // New sockets
+    await this.printerAdapterStore.initPrinterSockets();
     this.logger.log("Loading files store");
     await this.printerFilesStore.loadFilesStore();
     this.logger.log("Loading floor store");

@@ -141,10 +141,6 @@ export class MoonrakerWebsocketAdapter extends WebsocketRpcExtendedAdapter imple
     return this.socketState === SOCKET_STATE.unopened;
   }
 
-  needsReauth() {
-    return false;
-  }
-
   reauthSession() {}
 
   registerCredentials(socketLogin: ISocketLogin) {
@@ -169,7 +165,7 @@ export class MoonrakerWebsocketAdapter extends WebsocketRpcExtendedAdapter imple
     super.close();
   }
 
-  async setupSocketSession(): Promise<void> {
+  async initSession(): Promise<void> {
     // Can 404 or 503
     // const oneshot = await this.client.getAccessOneshotToken(this.login);
     // this.logger.log(`Oneshot ${oneshot.data.result}`);
@@ -283,21 +279,21 @@ export class MoonrakerWebsocketAdapter extends WebsocketRpcExtendedAdapter imple
         serviceChanged.moonraker?.active_state
       ) {
         this.logger.log("Received notify_service_state_changed, reloading Moonraker printer objects");
-        await this.setupSocketSession();
+        await this.initSession();
       }
       return;
     }
     if (eventName === "notify_klippy_ready") {
       this.logger.log("Received notify_klippy_ready, reloading Moonraker printer objects");
-      return await this.setupSocketSession();
+      return await this.initSession();
     }
     if (eventName === "notify_klippy_disconnected") {
       this.logger.log("Received notify_klippy_disconnected, reloading Moonraker printer objects");
-      return await this.setupSocketSession();
+      return await this.initSession();
     }
     if (eventName === "notify_klippy_shutdown") {
       this.logger.log("Received notify_klippy_shutdown, reloading Moonraker printer objects");
-      return await this.setupSocketSession();
+      return await this.initSession();
     }
 
     if (eventName === "notify_status_update") {

@@ -16,8 +16,8 @@ import { AppConstants } from "@/server.constants";
 import { printerResolveMiddleware } from "@/middleware/printer";
 import { generateCorrelationToken } from "@/utils/correlation-token.util";
 import { ROLES } from "@/constants/authorization.constants";
-import { PrinterSocketStore } from "@/state/printer-socket.store";
-import { TestPrinterSocketStore } from "@/state/test-printer-socket.store";
+import { PrinterAdapterStore } from "@/state/printer-adapter.store";
+import { TestPrinterAdapterStore } from "@/state/test-printer-adapter.store";
 import { PrinterCache } from "@/state/printer.cache";
 import { LoggerService } from "@/handlers/logger";
 import { PrinterEventsCache } from "@/state/printer-events.cache";
@@ -41,8 +41,8 @@ import { PrinterApiFactory } from "@/services/printer-api.factory";
 @before([authenticate(), authorizeRoles([ROLES.OPERATOR, ROLES.ADMIN]), printerResolveMiddleware()])
 export class PrinterController {
   printerApiFactory: PrinterApiFactory;
-  printerSocketStore: PrinterSocketStore;
-  testPrinterSocketStore: TestPrinterSocketStore;
+  printerAdapterStore: PrinterAdapterStore;
+  testprinterAdapterStore: TestPrinterAdapterStore;
   printerService: IPrinterService;
   printerCache: PrinterCache;
   printerEventsCache: PrinterEventsCache;
@@ -72,8 +72,8 @@ export class PrinterController {
     multerService,
   }: {
     printerApiFactory: PrinterApiFactory;
-    printerSocketStore: PrinterSocketStore;
-    testPrinterSocketStore: TestPrinterSocketStore;
+    printerAdapterStore: PrinterAdapterStore;
+    testprinterAdapterStore: TestPrinterAdapterStore;
     printerService: IPrinterService;
     printerCache: PrinterCache;
     printerEventsCache: PrinterEventsCache;
@@ -219,8 +219,9 @@ export class PrinterController {
     const { currentPrinterId } = getScopedPrinter(req);
     this.logger.log(`Refresh called by user for printer ${this.printerApi.login.printerURL} and id ${currentPrinterId}`);
 
-    this.printerSocketStore.reconnectOctoPrint(currentPrinterId);
+    this.printerSocketStore.adapterAllowEmittingEvents(currentPrinterId, false);
     await this.printerEventsCache.deletePrinterSocketEvents(currentPrinterId);
+    await this.printerSocketStore.reconnectAdapter(currentPrinterId);
 
     this.logger.log(`Refresh request returned`);
     res.send({});

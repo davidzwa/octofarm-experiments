@@ -30,7 +30,7 @@ const dbFolder = process.env[AppConstants.DATABASE_PATH] || "./database";
 const dbFile = process.env[AppConstants.DATABASE_FILE] || "./fdm-monster.sqlite";
 const dbName = dbFile === ":memory:" ? dbFile : join(superRootPath(), dbFolder, dbFile);
 
-// Bit verbose
+// This is verbose
 // console.log("Executing config", __filename, "\nDir", __dirname, "\nUsing database:", dbName, "\n");
 
 export const AppDataSource = new DataSource({

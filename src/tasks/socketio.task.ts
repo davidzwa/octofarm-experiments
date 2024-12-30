@@ -2,7 +2,7 @@ import { IO_MESSAGES, SocketIoGateway } from "@/state/socket-io.gateway";
 import { socketIoConnectedEvent } from "@/constants/event.constants";
 import { formatKB, sizeKB } from "@/utils/metric.utils";
 import { SettingsStore } from "@/state/settings.store";
-import { PrinterSocketStore } from "@/state/printer-socket.store";
+import { PrinterAdapterStore } from "@/state/printer-adapter.store";
 import { PrinterEventsCache } from "@/state/printer-events.cache";
 import { FloorStore } from "@/state/floor.store";
 import { FileUploadTrackerCache } from "@/state/file-upload-tracker.cache";
@@ -13,7 +13,7 @@ import { ILoggerFactory } from "@/handlers/logger-factory";
 
 export class SocketIoTask {
   socketIoGateway: SocketIoGateway;
-  printerSocketStore: PrinterSocketStore;
+  printerAdapterStore: PrinterAdapterStore;
   printerEventsCache: PrinterEventsCache;
   floorStore: FloorStore;
   fileUploadTrackerCache: FileUploadTrackerCache;
@@ -30,7 +30,7 @@ export class SocketIoTask {
   constructor({
     socketIoGateway,
     floorStore,
-    printerSocketStore,
+    printerAdapterStore,
     printerEventsCache,
     printerCache,
     loggerFactory,
@@ -40,7 +40,7 @@ export class SocketIoTask {
   }: {
     socketIoGateway: SocketIoGateway;
     floorStore: FloorStore;
-    printerSocketStore: PrinterSocketStore;
+    printerAdapterStore: PrinterAdapterStore;
     printerEventsCache: PrinterEventsCache;
     printerCache: PrinterCache;
     loggerFactory: ILoggerFactory;
@@ -49,7 +49,7 @@ export class SocketIoTask {
     eventEmitter2: EventEmitter2;
   }) {
     this.socketIoGateway = socketIoGateway;
-    this.printerSocketStore = printerSocketStore;
+    this.printerAdapterStore = printerAdapterStore;
     this.printerEventsCache = printerEventsCache;
     this.fileUploadTrackerCache = fileUploadTrackerCache;
     this.floorStore = floorStore;
@@ -70,7 +70,7 @@ export class SocketIoTask {
   async sendUpdate() {
     const floors = await this.floorStore.listCache();
     const printers = await this.printerCache.listCachedPrinters(true);
-    const socketStates = this.printerSocketStore.getSocketStatesById();
+    const socketStates = this.printerAdapterStore.getAdapterStatesById();
     const printerEvents = await this.printerEventsCache.getAllKeyValues();
     const trackedUploads = this.fileUploadTrackerCache.getUploads(true);
 

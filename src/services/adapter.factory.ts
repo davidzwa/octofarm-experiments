@@ -3,7 +3,7 @@ import { MoonrakerType, OctoprintType } from "@/services/printer-api.interface";
 import { SettingsStore } from "@/state/settings.store";
 import { IWebsocketAdapter } from "@/services/websocket-adapter.interface";
 
-export class SocketFactory {
+export class AdapterFactory {
   cradle: any;
 
   constructor(cradle: {}) {

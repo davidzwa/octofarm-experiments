@@ -63,7 +63,7 @@ export async function setupTestApp(
 
   if (loadPrinterStore) {
     // Requires (in-memory) database connection, so its optional
-    const printerSocketStore = container.resolve(DITokens.printerSocketStore);
+    const printerSocketStore = container.resolve(DITokens.printerAdapterStore);
     await printerSocketStore.loadPrinterSockets();
   }
 

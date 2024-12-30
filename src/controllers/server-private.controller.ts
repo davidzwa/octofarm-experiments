@@ -7,7 +7,7 @@ import { ROLES } from "@/constants/authorization.constants";
 import { validateMiddleware } from "@/handlers/validators";
 import { ServerReleaseService } from "@/services/core/server-release.service";
 import { ClientBundleService } from "@/services/core/client-bundle.service";
-import { PrinterSocketStore } from "@/state/printer-socket.store";
+import { PrinterAdapterStore } from "@/state/printer-adapter.store";
 import { PrinterCache } from "@/state/printer.cache";
 import { YamlService } from "@/services/core/yaml.service";
 import { MulterService } from "@/services/core/multer.service";
@@ -21,7 +21,7 @@ export class ServerPrivateController {
   clientBundleService: ClientBundleService;
   printerCache: PrinterCache;
   printerService: IPrinterService;
-  printerSocketStore: PrinterSocketStore;
+  printerAdapterStore: PrinterAdapterStore;
   githubService: GithubService;
   yamlService: YamlService;
   multerService: MulterService;
@@ -46,7 +46,7 @@ export class ServerPrivateController {
     clientBundleService: ClientBundleService;
     githubService: GithubService;
     logDumpService: LogDumpService;
-    printerSocketStore: PrinterSocketStore;
+    printerAdapterStore: PrinterAdapterStore;
     yamlService: YamlService;
     multerService: MulterService;
   }) {

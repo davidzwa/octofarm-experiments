@@ -6,13 +6,13 @@ jest.mock("@/services/octoprint/octoprint.client");
 import { DITokens } from "@/container.tokens";
 import { configureContainer } from "@/container";
 import { ValidationException } from "@/exceptions/runtime.exceptions";
-import { TestPrinterSocketStore } from "@/state/test-printer-socket.store";
-import { PrinterSocketStore } from "@/state/printer-socket.store";
+import { TestPrinterAdapterStore } from "@/state/test-printer-adapter.store";
+import { PrinterAdapterStore } from "@/state/printer-adapter.store";
 import { TypeormService } from "@/services/typeorm/typeorm.service";
 
 let printerService: PrinterService;
 let printerCache: PrinterCache;
-let testPrinterSocketStore: TestPrinterSocketStore;
+let testprinterAdapterStore: TestPrinterAdapterStore;
 let printerFilesStore: PrinterFilesStore;
 
 beforeAll(async () => {
@@ -20,14 +20,14 @@ beforeAll(async () => {
   expect(container.resolve(DITokens.isTypeormMode)).toBe(true);
   await container.resolve<TypeormService>(DITokens.typeormService).createConnection();
   await container.resolve(DITokens.settingsStore).loadSettings();
-  testPrinterSocketStore = container.resolve(DITokens.testPrinterSocketStore);
+  testPrinterSocketStore = container.resolve(DITokens.testPrinterAdapterStore);
   printerCache = container.resolve(DITokens.printerCache);
   printerService = container.resolve(DITokens.printerService);
   printerFilesStore = container.resolve(DITokens.printerFilesStore);
   await printerCache.loadCache();
 });
 
-describe(PrinterSocketStore.name, () => {
+describe(PrinterAdapterStore.name, () => {
   const invalidNewPrinterState = {
     apiKey: "asd",
     printerURL: null as null | string,
