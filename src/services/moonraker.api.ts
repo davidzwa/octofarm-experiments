@@ -23,6 +23,7 @@ export class MoonrakerApi implements IPrinterApi {
   logger: LoggerService;
   client: MoonrakerClient;
   printerLogin: LoginDto;
+
   constructor({
     moonrakerClient,
     printerLogin,

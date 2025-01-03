@@ -71,11 +71,10 @@ export class PrinterAdapterStore {
 
   async reconnectAdapter(id: IdType) {
     const adapter = this.getPrinterAdapter(id);
+
     if (!adapter) return;
 
-    adapter.close();
-
-    adapter.reauthSession();
+    await adapter.reconnect();
   }
 
   getAdapterStatesById() {
@@ -106,7 +105,7 @@ export class PrinterAdapterStore {
     return this.printerAdaptersById[id];
   }
 
-  createOrUpdateAdapter(printer: PrinterUnsafeDto<IdType>) {
+  async createOrUpdateAdapter(printer: PrinterUnsafeDto<IdType>): Promise<void> {
     const { enabled, id } = printer;
     let foundAdapter = this.printerAdaptersById[id.toString()];
 
@@ -119,19 +118,12 @@ export class PrinterAdapterStore {
     if (!foundAdapter) {
       foundAdapter = this.printerAdapterFactory.createInstance(printer.printerType);
       this.printerAdaptersById[id] = foundAdapter;
-    } else {
-      // TODO can we instead let the adapter reset itself instead?
-      foundAdapter.close();
-      this.logger.log(`Closing printer adapter for update`);
     }
 
-    foundAdapter.registerCredentials({
-      printerId: printer.id.toString(),
-      loginDto: {
-        apiKey: printer.apiKey,
-        printerURL: printer.printerURL,
-        printerType: printer.printerType,
-      },
+    await foundAdapter.connect(printer.id.toString(), {
+      apiKey: printer.apiKey,
+      printerURL: printer.printerURL,
+      printerType: printer.printerType,
     });
     foundAdapter.resetSocketState();
   }

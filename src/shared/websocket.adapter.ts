@@ -2,16 +2,19 @@ import { AppConstants } from "@/server.constants";
 import { CloseEvent, Data, WebSocket, Event as WsEvent, ErrorEvent, MessageEvent } from "ws";
 import { LoggerService } from "@/handlers/logger";
 import { ILoggerFactory } from "@/handlers/logger-factory";
+import { IConfigService } from "@/services/core/config.service";
 
 export type WsProtocol = "ws" | "wss";
 
 export class WebsocketAdapter {
   socket?: WebSocket;
   protected logger: LoggerService;
+  protected configService: IConfigService;
   eventEmittingAllowed: boolean = true;
 
-  constructor({ loggerFactory }: { loggerFactory: ILoggerFactory }) {
+  constructor({ loggerFactory, configService }: { loggerFactory: ILoggerFactory; configService: IConfigService }) {
     this.logger = loggerFactory(WebsocketAdapter.name);
+    this.configService = configService;
   }
 
   get isOpened() {
@@ -39,6 +42,10 @@ export class WebsocketAdapter {
    * @returns {void}
    */
   open(url: string | URL): void {
+    if (this.socket) {
+      throw new Error("Socket already exists, ignoring open request");
+    }
+
     this.socket = new WebSocket(url, { handshakeTimeout: AppConstants.defaultWebsocketHandshakeTimeout });
     this.socket.onopen = (event) => this.onOpen(event);
     this.socket.onerror = (error) => this.onError(error);
@@ -120,5 +127,9 @@ export class WebsocketAdapter {
    */
   private async onClose(event: CloseEvent): Promise<void> {
     await this.afterClosed(event);
+  }
+
+  protected get _debugMode() {
+    return this.configService.get(AppConstants.debugSocketStatesKey, AppConstants.defaultDebugSocketStates) === "true";
   }
 }
