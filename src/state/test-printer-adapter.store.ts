@@ -20,22 +20,22 @@ import { printerEvents } from "@/constants/event.constants";
 export class TestPrinterAdapterStore {
   testSocket: IWebsocketAdapter;
   socketIoGateway: SocketIoGateway;
-  socketFactory: PrinterAdapterFactory;
+  printerAdapterFactory: PrinterAdapterFactory;
   eventEmitter2: EventEmitter2;
   logger: LoggerService;
 
   constructor({
-    socketFactory,
+    printerAdapterFactory,
     socketIoGateway,
     eventEmitter2,
     loggerFactory,
   }: {
-    socketFactory: PrinterAdapterFactory;
+    printerAdapterFactory: PrinterAdapterFactory;
     socketIoGateway: SocketIoGateway;
     eventEmitter2: EventEmitter2;
     loggerFactory: ILoggerFactory;
   }) {
-    this.socketFactory = socketFactory;
+    this.printerAdapterFactory = printerAdapterFactory;
     this.socketIoGateway = socketIoGateway;
     this.eventEmitter2 = eventEmitter2;
     this.logger = loggerFactory(TestPrinterAdapterStore.name);
@@ -52,7 +52,7 @@ export class TestPrinterAdapterStore {
 
     // Create a new socket if it doesn't exist
     const { correlationToken } = printer;
-    this.testSocket = this.socketFactory.createInstance(printer.printerType);
+    this.testSocket = this.printerAdapterFactory.createInstance(printer.printerType);
 
     // Reset the socket credentials before (re-)connecting
     this.testSocket.registerCredentials({

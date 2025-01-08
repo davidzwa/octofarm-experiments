@@ -57,8 +57,8 @@ export class PrinterController {
 
   constructor({
     printerApiFactory,
-    printerSocketStore,
-    testPrinterSocketStore,
+    printerAdapterStore,
+    testPrinterAdapterStore,
     printerService,
     printerCache,
     printerEventsCache,
@@ -73,7 +73,7 @@ export class PrinterController {
   }: {
     printerApiFactory: PrinterApiFactory;
     printerAdapterStore: PrinterAdapterStore;
-    testprinterAdapterStore: TestPrinterAdapterStore;
+    testPrinterAdapterStore: TestPrinterAdapterStore;
     printerService: IPrinterService;
     printerCache: PrinterCache;
     printerEventsCache: PrinterEventsCache;
@@ -91,8 +91,8 @@ export class PrinterController {
     this.printerCache = printerCache;
     this.printerEventsCache = printerEventsCache;
     this.printerService = printerService;
-    this.printerSocketStore = printerSocketStore;
-    this.testPrinterSocketStore = testPrinterSocketStore;
+    this.printerAdapterStore = printerAdapterStore;
+    this.testprinterAdapterStore = testPrinterAdapterStore;
     this.taskManagerService = taskManagerService;
     this.printerApi = printerApi;
     this.octoprintClient = octoprintClient;
@@ -219,9 +219,9 @@ export class PrinterController {
     const { currentPrinterId } = getScopedPrinter(req);
     this.logger.log(`Refresh called by user for printer ${this.printerApi.login.printerURL} and id ${currentPrinterId}`);
 
-    this.printerSocketStore.adapterAllowEmittingEvents(currentPrinterId, false);
+    this.printerAdapterStore.adapterAllowEmittingEvents(currentPrinterId, false);
     await this.printerEventsCache.deletePrinterSocketEvents(currentPrinterId);
-    await this.printerSocketStore.reconnectAdapter(currentPrinterId);
+    await this.printerAdapterStore.reconnectAdapter(currentPrinterId);
 
     this.logger.log(`Refresh request returned`);
     res.send({});
@@ -239,7 +239,7 @@ export class PrinterController {
 
     // Add printer with test=true
     try {
-      await this.testPrinterSocketStore.setupTestPrinter(newPrinter);
+      await this.testprinterAdapterStore.setupTestPrinter(newPrinter);
     } catch (e) {
       res.send({ correlationToken: newPrinter.correlationToken, failure: true, error: e.toString() });
       return;

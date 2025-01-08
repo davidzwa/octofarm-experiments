@@ -35,7 +35,7 @@ export class BatchCallService {
     printerApiFactory,
     printerCache,
     printerEventsCache,
-    printerSocketStore,
+    printerAdapterStore,
     printerFilesStore,
     printerService,
     loggerFactory,
@@ -51,7 +51,7 @@ export class BatchCallService {
     this.printerApiFactory = printerApiFactory;
     this.printerCache = printerCache;
     this.printerEventsCache = printerEventsCache;
-    this.printerSocketStore = printerSocketStore;
+    this.printerAdapterStore = printerAdapterStore;
     this.printerFilesStore = printerFilesStore;
     this.printerService = printerService;
     this.logger = loggerFactory(BatchCallService.name);
@@ -111,10 +111,10 @@ export class BatchCallService {
     return await Promise.all(promises);
   }
 
-  batchConnectSocket(printerIds: string[]): void {
+  async batchConnectSocket(printerIds: string[]): Promise<void> {
     for (const printerId of printerIds) {
       try {
-        this.printerSocketStore.reconnectAdapter(printerId);
+        await this.printerAdapterStore.reconnectAdapter(printerId);
       } catch (e) {
         captureException(e);
         this.logger.error(`Error setting socket to reconnect ${errorSummary(e)}`);

@@ -6,7 +6,6 @@ import { PERMS } from "@/constants/authorization.constants";
 import { isDocker } from "@/utils/is-docker";
 import { RoleService } from "@/services/mongoose/role.service";
 import { SettingsStore } from "@/state/settings.store";
-import { PrinterAdapterStore } from "@/state/printer-adapter.store";
 import { ServerReleaseService } from "@/services/core/server-release.service";
 import { MonsterPiService } from "@/services/core/monsterpi.service";
 import { UserService } from "@/services/mongoose/user.service";
@@ -15,7 +14,6 @@ import { Request, Response } from "express";
 export class ServerPublicController {
   serverVersion: string;
   settingsStore: SettingsStore;
-  printerAdapterStore: PrinterAdapterStore;
   serverReleaseService: ServerReleaseService;
   monsterPiService: MonsterPiService;
   userService: UserService;
@@ -24,7 +22,6 @@ export class ServerPublicController {
 
   constructor({
     settingsStore,
-    printerSocketStore,
     serverVersion,
     serverReleaseService,
     monsterPiService,
@@ -33,7 +30,6 @@ export class ServerPublicController {
     isTypeormMode,
   }: {
     settingsStore: SettingsStore;
-    printerAdapterStore: PrinterAdapterStore;
     serverVersion: string;
     serverReleaseService: ServerReleaseService;
     monsterPiService: MonsterPiService;
@@ -43,7 +39,6 @@ export class ServerPublicController {
   }) {
     this.settingsStore = settingsStore;
     this.serverVersion = serverVersion;
-    this.printerSocketStore = printerSocketStore;
     this.serverReleaseService = serverReleaseService;
     this.monsterPiService = monsterPiService;
     this.userService = userService;
