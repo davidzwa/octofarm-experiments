@@ -20,6 +20,8 @@ import { TypeormService } from "@/services/typeorm/typeorm.service";
 import { ILoggerFactory } from "@/handlers/logger-factory";
 import { ISettingsService } from "@/services/interfaces/settings.service.interface";
 import { PrinterThumbnailCache } from "@/state/printer-thumbnail.cache";
+import { Adapter } from "@/services/octoprint/adapter";
+import { OctoprintType } from "@/services/printer-api.interface";
 
 export class BootTask {
   logger: LoggerService;
@@ -163,6 +165,13 @@ export class BootTask {
     const overrideJwtSecret = this.configService.get(AppConstants.OVERRIDE_JWT_SECRET, undefined);
     const overrideJwtExpiresIn = this.configService.get(AppConstants.OVERRIDE_JWT_EXPIRES_IN, undefined);
     await this.settingsStore.persistOptionalCredentialSettings(overrideJwtSecret, overrideJwtExpiresIn);
+
+    const addy = new Adapter();
+    await addy.connect(-1, {
+      printerURL: "http://localhost",
+      printerType: OctoprintType,
+      apiKey: "EE05954F2E7C4C049D5F41609AC04C7B",
+    });
 
     this.logger.log("Clearing upload folder");
     this.multerService.clearUploadsFolder();

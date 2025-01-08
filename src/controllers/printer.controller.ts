@@ -42,7 +42,7 @@ import { PrinterApiFactory } from "@/services/printer-api.factory";
 export class PrinterController {
   printerApiFactory: PrinterApiFactory;
   printerAdapterStore: PrinterAdapterStore;
-  testprinterAdapterStore: TestPrinterAdapterStore;
+  testPrinterAdapterStore: TestPrinterAdapterStore;
   printerService: IPrinterService;
   printerCache: PrinterCache;
   printerEventsCache: PrinterEventsCache;
@@ -92,7 +92,7 @@ export class PrinterController {
     this.printerEventsCache = printerEventsCache;
     this.printerService = printerService;
     this.printerAdapterStore = printerAdapterStore;
-    this.testprinterAdapterStore = testPrinterAdapterStore;
+    this.testPrinterAdapterStore = testPrinterAdapterStore;
     this.taskManagerService = taskManagerService;
     this.printerApi = printerApi;
     this.octoprintClient = octoprintClient;
@@ -239,7 +239,7 @@ export class PrinterController {
 
     // Add printer with test=true
     try {
-      await this.testprinterAdapterStore.setupTestPrinter(newPrinter);
+      await this.testPrinterAdapterStore.setupTestPrinter(newPrinter);
     } catch (e) {
       res.send({ correlationToken: newPrinter.correlationToken, failure: true, error: e.toString() });
       return;
