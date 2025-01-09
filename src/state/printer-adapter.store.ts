@@ -59,7 +59,7 @@ export class PrinterAdapterStore {
     this.printerAdaptersById = {};
     for (const printer of printers) {
       try {
-        this.createOrUpdateAdapter(printer);
+        await this.createOrUpdateAdapter(printer);
       } catch (e) {
         captureException(e);
         this.logger.error(`${PrinterAdapterStore.name} failed to construct new printer adapter.`, errorSummary(e));

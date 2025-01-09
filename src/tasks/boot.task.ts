@@ -20,8 +20,16 @@ import { TypeormService } from "@/services/typeorm/typeorm.service";
 import { ILoggerFactory } from "@/handlers/logger-factory";
 import { ISettingsService } from "@/services/interfaces/settings.service.interface";
 import { PrinterThumbnailCache } from "@/state/printer-thumbnail.cache";
-import { Adapter } from "@/services/octoprint/adapter";
 import { OctoprintType } from "@/services/printer-api.interface";
+import { WebSocketAdapter } from "@/services/redesign/3-claude-srp/websocket.adapter";
+import { Data } from "ws";
+import { RecordingWebSocket } from "@/services/redesign/3-claude-srp/record-replay/recording.websocket";
+import { writeFileSync } from "node:fs";
+import { readFileSync } from "fs";
+import { WebsocketRecording } from "@/services/redesign/3-claude-srp/record-replay/websocket.recording";
+import { sleep } from "@/utils/time.utils";
+import { InMemoryRecordingStorage } from "@/services/redesign/3-claude-srp/record-replay/recording.storage";
+import { OctoprintClient } from "@/services/octoprint/octoprint.client";
 
 export class BootTask {
   logger: LoggerService;
@@ -35,6 +43,7 @@ export class BootTask {
   permissionService: PermissionService;
   roleService: RoleService;
   userService: UserService;
+  octoprintClient: OctoprintClient;
   pluginRepositoryCache: PluginRepositoryCache;
   floorStore: FloorStore;
   clientBundleService: ClientBundleService;
@@ -54,6 +63,7 @@ export class BootTask {
     permissionService,
     roleService,
     userService,
+    octoprintClient,
     taskManagerService,
     pluginRepositoryCache,
     floorStore,
@@ -73,6 +83,7 @@ export class BootTask {
     permissionService: PermissionService;
     roleService: RoleService;
     userService: UserService;
+    octoprintClient: OctoprintClient;
     taskManagerService: TaskManagerService;
     pluginRepositoryCache: PluginRepositoryCache;
     floorStore: FloorStore;
@@ -93,6 +104,7 @@ export class BootTask {
     this.permissionService = permissionService;
     this.roleService = roleService;
     this.userService = userService;
+    this.octoprintClient = octoprintClient;
     this.taskManagerService = taskManagerService;
     this.pluginRepositoryCache = pluginRepositoryCache;
     this.floorStore = floorStore;
@@ -166,12 +178,87 @@ export class BootTask {
     const overrideJwtExpiresIn = this.configService.get(AppConstants.OVERRIDE_JWT_EXPIRES_IN, undefined);
     await this.settingsStore.persistOptionalCredentialSettings(overrideJwtSecret, overrideJwtExpiresIn);
 
-    const addy = new Adapter();
-    await addy.connect(-1, {
+    // const addy = new Adapter();
+    // try {
+    //   await addy.connect(-1, {
+    //     printerURL: "http://localhost",
+    //     printerType: OctoprintType,
+    //     apiKey: "EE05954F2E7C4C049D5F41609AC04C7B",
+    //   });
+    // } catch (e) {
+    //   console.error("Error setting up adapter connection");
+    // }
+    const login = {
       printerURL: "http://localhost",
       printerType: OctoprintType,
       apiKey: "EE05954F2E7C4C049D5F41609AC04C7B",
+    };
+    const opClient = this.octoprintClient;
+    class MyWebSocketClient extends WebSocketAdapter {
+      client = opClient;
+      authenticated = false;
+
+      protected async handleMessage(data: Data): Promise<void> {
+        const original = data.toString();
+        const message = JSON.parse(original);
+        const eventName = Object.keys(message)[0];
+        const payload = message[eventName];
+
+        console.log(`RX Msg ${eventName} ${original.substring(0, 140)}...`);
+
+        if (!this.authenticated) {
+          const session = await this.client.login(login).then((r) => r.data);
+          const username = await this.client.getAdminUserOrDefault(login);
+          const sessionCredentials = `${username}:${session.session}`;
+          this.authenticated = true;
+          await this.sendMessage(
+            JSON.stringify({
+              auth: sessionCredentials,
+            })
+          );
+        }
+      }
+    }
+
+    const storage = new InMemoryRecordingStorage();
+    const recorder = new MyWebSocketClient({
+      mode: "live",
+      recordingStorage: storage,
     });
+    try {
+      await recorder.connect(-1, login);
+      console.log("ws state " + recorder.connectionState);
+    } catch (e) {
+      console.error("Error setting up adapter connection " + e.message);
+    }
+
+    // setTimeout(async () => {
+    //   await recorder.disconnect();
+    //
+    //   const recording = storage.getRecordings()[0];
+    //   writeFileSync("recording.json", JSON.stringify(recording, null, 2));
+    // }, 11000);
+    // await sleep(12000);
+    //
+    // console.warn("Replaying recording");
+    //
+    // const result = readFileSync("recording.json", "utf-8");
+    // const recording: WebsocketRecording = JSON.parse(result);
+    //
+    // const addy2 = new MyWebSocketClient({
+    //   mode: "replay",
+    //   recording,
+    // });
+    // try {
+    //   await addy2.connect(-1, {
+    //     printerURL: "http://localhost",
+    //     printerType: OctoprintType,
+    //     apiKey: "EE05954F2E7C4C049D5F41609AC04C7B",
+    //   });
+    //   console.log("ws state " + addy2.connectionState);
+    // } catch (e) {
+    //   console.error("Error setting up adapter connection " + e.message);
+    // }
 
     this.logger.log("Clearing upload folder");
     this.multerService.clearUploadsFolder();

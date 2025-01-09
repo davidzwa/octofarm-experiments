@@ -1,0 +1,93 @@
+{
+  "startTime": 1736384482269,
+  "events": [
+    {
+      "type": "stateChange",
+      "timestamp": 1736384482280,
+      "data": {
+        "state": 1
+      },
+      "state": 1
+    },
+    {
+      "type": "open",
+      "timestamp": 1736384482280,
+      "state": 1
+    },
+    {
+      "type": "message",
+      "timestamp": 1736384482283,
+      "data": "{\"connected\": {\"version\": \"1.10.2\", \"display_version\": \"1.10.2\", \"branch\": \"staging/bugfix\", \"python_version\": \"3.10.14\", \"plugin_hash\": \"2f6eb3a114342dc7c40675efd3c7c144\", \"config_hash\": \"03849047af84b80b135d28e58aed165a\", \"debug\": false, \"safe_mode\": null, \"online\": true, \"permissions\": [{\"key\": \"ADMIN\", \"name\": \"Admin\", \"dangerous\": true, \"default_groups\": [\"admins\"], \"description\": \"Admin is allowed to do everything\", \"needs\": {\"role\": [\"admin\"]}}, {\"key\": \"STATUS\", \"name\": \"Status\", \"dangerous\": false, \"default_groups\": [\"users\", \"readonly\"], \"description\": \"Allows to gather basic status information, e.g. job progress, printer state, temperatures, ... Mandatory for the default UI to work\", \"needs\": {\"role\": [\"status\"]}}, {\"key\": \"CONNECTION\", \"name\": \"Connection\", \"dangerous\": false, \"default_groups\": [\"users\"], \"description\": \"Allows to connect to and disconnect from a printer\", \"needs\": {\"role\": [\"connection\"]}}, {\"key\": \"WEBCAM\", \"name\": \"Webcam\", \"dangerous\": false, \"default_groups\": [\"users\", \"readonly\"], \"description\": \"Allows to watch the webcam stream\", \"needs\": {\"role\": [\"webcam\"]}}, {\"key\": \"SYSTEM\", \"name\": \"System\", \"dangerous\": true, \"default_groups\": [], \"description\": \"Allows to run system commands, e.g. restart OctoPrint, shutdown or reboot the system, and to retrieve system and usage information\", \"needs\": {\"role\": [\"system\"]}}, {\"key\": \"FILES_LIST\", \"name\": \"File List\", \"dangerous\": false, \"default_groups\": [\"users\", \"readonly\"], \"description\": \"Allows to retrieve a list of all uploaded files and folders, includingtheir metadata (e.g. date, file size, analysis results, ...)\", \"needs\": {\"role\": [\"files_list\"]}}, {\"key\": \"FILES_UPLOAD\", \"name\": \"File Upload\", \"dangerous\": false, \"default_groups\": [\"users\"], \"description\": \"Allows users to upload new files, create new folders and copy existing ones. If the File Delete permission is also set, File Upload also allows moving files and folders.\", \"needs\": {\"role\": [\"files_upload\"]}}, {\"key\": \"FILES_DOWNLOAD\", \"name\": \"File Download\", \"dangerous\": false, \"default_groups\": [\"users\", \"readonly\"], \"description\": \"Allows users to download files. The GCODE viewer is affected by this as well.\", \"needs\": {\"role\": [\"files_download\"]}}, {\"key\": \"FILES_DELETE\", \"name\": \"File Delete\", \"dangerous\": false, \"default_groups\": [\"users\"], \"description\": \"Allows users to delete files and folders. If the File Upload permission is also set, File Delete also allows moving files and folders.\", \"needs\": {\"role\": [\"files_delete\"]}}, {\"key\": \"FILES_SELECT\", \"name\": \"File Select\", \"dangerous\": false, \"default_groups\": [\"users\"], \"description\": \"Allows to select a file for printing\", \"needs\": {\"role\": [\"files_select\"]}}, {\"key\": \"PRINT\", \"name\": \"Print\", \"dangerous\": false, \"default_groups\": [\"users\"], \"description\": \"Allows to start, pause and cancel a print job\", \"needs\": {\"role\": [\"print\"]}}, {\"key\": \"GCODE_VIEWER\", \"name\": \"GCODE viewer\", \"dangerous\": false, \"default_groups\": [\"users\", \"readonly\"], \"description\": \"Allows access to the GCODE viewer if the \\\"File Download\\\"permission is also set.\", \"needs\": {\"role\": [\"gcodeviewer\"]}}, {\"key\": \"MONITOR_TERMINAL\", \"name\": \"Terminal\", \"dangerous\": false, \"default_groups\": [\"users\", \"readonly\"], \"description\": \"Allows to watch the terminal tab but not to send commands to the printer from it\", \"needs\": {\"role\": [\"monitor_terminal\"]}}, {\"key\": \"CONTROL\", \"name\": \"Control\", \"dangerous\": false, \"default_groups\": [\"users\"], \"description\": \"Allows to control of the printer by using the temperature controls,the control tab or sending commands through the terminal.\", \"needs\": {\"role\": [\"control\"]}}, {\"key\": \"SLICE\", \"name\": \"Slice\", \"dangerous\": false, \"default_groups\": [\"users\"], \"description\": \"Allows to slice files\", \"needs\": {\"role\": [\"slice\"]}}, {\"key\": \"TIMELAPSE_LIST\", \"name\": \"Timelapse List\", \"dangerous\": false, \"default_groups\": [\"users\", \"readonly\"], \"description\": \"Allows to list timelapse videos\", \"needs\": {\"role\": [\"timelapse_list\"]}}, {\"key\": \"TIMELAPSE_DOWNLOAD\", \"name\": \"Timelapse Download\", \"dangerous\": false, \"default_groups\": [\"users\", \"readonly\"], \"description\": \"Allows to download timelapse videos\", \"needs\": {\"role\": [\"timelapse_download\"]}}, {\"key\": \"TIMELAPSE_DELETE\", \"name\": \"Timelapse Delete\", \"dangerous\": false, \"default_groups\": [\"users\"], \"description\": \"Allows to delete timelapse videos\", \"needs\": {\"role\": [\"timelapse_delete\"]}}, {\"key\": \"TIMELAPSE_MANAGE_UNRENDERED\", \"name\": \"Timelapse Manage Unrendered\", \"dangerous\": false, \"default_groups\": [\"users\"], \"description\": \"Allows to list, delete and render unrendered timelapses\", \"needs\": {\"role\": [\"timelapse_manage_unrendered\"]}}, {\"key\": \"TIMELAPSE_ADMIN\", \"name\": \"Timelapse Admin\", \"dangerous\": false, \"default_groups\": [\"users\"], \"description\": \"Allows to change the timelapse settings.\", \"needs\": {\"role\": [\"timelapse_admin\"]}}, {\"key\": \"SETTINGS_READ\", \"name\": \"Settings Access\", \"dangerous\": false, \"default_groups\": [\"users\", \"readonly\"], \"description\": \"Allows to read non sensitive settings. Mandatory for the default UI to work.\", \"needs\": {\"role\": [\"settings_read\"]}}, {\"key\": \"SETTINGS\", \"name\": \"Settings Admin\", \"dangerous\": true, \"default_groups\": [], \"description\": \"Allows to manage settings and also to read sensitive settings\", \"needs\": {\"role\": [\"settings\"]}}, {\"key\": \"PLUGIN_ACHIEVEMENTS_VIEW\", \"name\": \"Achievements Plugin: View instance achievements & stats\", \"dangerous\": false, \"default_groups\": [\"readonly\", \"users\", \"admins\"], \"description\": \"Allows to view the instance achievements & stats.\", \"needs\": {\"role\": [\"plugin_achievements_view\"]}, \"plugin\": \"achievements\"}, {\"key\": \"PLUGIN_ACHIEVEMENTS_RESET\", \"name\": \"Achievements Plugin: Reset instance achievements & stats\", \"dangerous\": false, \"default_groups\": [\"admins\"], \"description\": \"Allows to reset the instance achievements & stats.\", \"needs\": {\"role\": [\"plugin_achievements_reset\"]}, \"plugin\": \"achievements\"}, {\"key\": \"PLUGIN_ACTION_COMMAND_NOTIFICATION_SHOW\", \"name\": \"Action Command Notification Support: Show printer notifications\", \"dangerous\": false, \"default_groups\": [\"users\"], \"description\": \"Allows to see printer notifications\", \"needs\": {\"role\": [\"plugin_action_command_notification_show\"]}, \"plugin\": \"action_command_notification\"}, {\"key\": \"PLUGIN_ACTION_COMMAND_NOTIFICATION_CLEAR\", \"name\": \"Action Command Notification Support: Clear printer notifications\", \"dangerous\": false, \"default_groups\": [\"users\"], \"description\": \"Allows to clear printer notifications\", \"needs\": {\"role\": [\"plugin_action_command_notification_clear\"]}, \"plugin\": \"action_command_notification\"}, {\"key\": \"PLUGIN_ACTION_COMMAND_PROMPT_INTERACT\", \"name\": \"Action Command Prompt Support: Interact with printer prompts\", \"dangerous\": false, \"default_groups\": [\"users\"], \"description\": \"Allows to see and interact with printer prompts\", \"needs\": {\"role\": [\"plugin_action_command_prompt_interact\"]}, \"plugin\": \"action_command_prompt\"}, {\"key\": \"PLUGIN_ANNOUNCEMENTS_READ\", \"name\": \"Announcement Plugin: Read announcements\", \"dangerous\": false, \"default_groups\": [\"admins\"], \"description\": \"Allows to read announcements\", \"needs\": {\"role\": [\"plugin_announcements_read\"]}, \"plugin\": \"announcements\"}, {\"key\": \"PLUGIN_ANNOUNCEMENTS_MANAGE\", \"name\": \"Announcement Plugin: Manage announcement subscriptions\", \"dangerous\": false, \"default_groups\": [\"admins\"], \"description\": \"Allows to manage announcement subscriptions. Includes \\\"Read announcements\\\" permission\", \"needs\": {\"role\": [\"plugin_announcements_manage\", \"plugin_announcements_read\"]}, \"plugin\": \"announcements\"}, {\"key\": \"PLUGIN_APPKEYS_ADMIN\", \"name\": \"Application Keys Plugin: Admin access\", \"dangerous\": true, \"default_groups\": [\"admins\"], \"description\": \"Allows administrating all application keys\", \"needs\": {\"role\": [\"plugin_appkeys_admin\"]}, \"plugin\": \"appkeys\"}, {\"key\": \"PLUGIN_APPKEYS_GRANT\", \"name\": \"Application Keys Plugin: Grant access\", \"dangerous\": false, \"default_groups\": [\"users\"], \"description\": \"Allows to grant app access\", \"needs\": {\"role\": [\"plugin_appkeys_user\"]}, \"plugin\": \"appkeys\"}, {\"key\": \"PLUGIN_BACKUP_CREATE\", \"name\": \"Backup & Restore: Create backup\", \"dangerous\": false, \"default_groups\": [\"admins\"], \"description\": \"Allows to trigger the creation of backups\", \"needs\": {\"role\": [\"plugin_backup_create\"]}, \"plugin\": \"backup\"}, {\"key\": \"PLUGIN_FILE_CHECK_RUN\", \"name\": \"File Check: Run File Check\", \"dangerous\": false, \"default_groups\": [\"users\", \"admins\"], \"description\": \"Allows to run File Check and view the results.\", \"needs\": {\"role\": [\"plugin_file_check_run\"]}, \"plugin\": \"file_check\"}, {\"key\": \"PLUGIN_FIRMWARE_CHECK_DISPLAY\", \"name\": \"Firmware Check: Display firmware check warnings\", \"dangerous\": false, \"default_groups\": [\"users\"], \"description\": \"Allows to see firmware check warnings\", \"needs\": {\"role\": [\"plugin_firmware_check_display\"]}, \"plugin\": \"firmware_check\"}, {\"key\": \"PLUGIN_LOGGING_MANAGE\", \"name\": \"Logging: Logging management\", \"dangerous\": false, \"default_groups\": [\"admins\"], \"description\": \"Allows to download and delete log files and list and set log levels.\", \"needs\": {\"role\": [\"plugin_logging_manage\"]}, \"plugin\": \"logging\"}, {\"key\": \"PLUGIN_PLUGINMANAGER_LIST\", \"name\": \"Plugin Manager: List plugins\", \"dangerous\": false, \"default_groups\": [\"readonly\", \"users\", \"admins\"], \"description\": \"Allows to list installed plugins.\", \"needs\": {\"role\": [\"plugin_pluginmanager_list\"]}, \"plugin\": \"pluginmanager\"}, {\"key\": \"PLUGIN_PLUGINMANAGER_MANAGE\", \"name\": \"Plugin Manager: Manage plugins\", \"dangerous\": false, \"default_groups\": [\"admins\"], \"description\": \"Allows to enable, disable and uninstall installed plugins.\", \"needs\": {\"role\": [\"plugin_pluginmanager_manage\"]}, \"plugin\": \"pluginmanager\"}, {\"key\": \"PLUGIN_PLUGINMANAGER_INSTALL\", \"name\": \"Plugin Manager: Install new plugins\", \"dangerous\": true, \"default_groups\": [\"admins\"], \"description\": \"Allows to install new plugins. Includes the \\\"Manage plugins\\\" permission.\", \"needs\": {\"role\": [\"plugin_pluginmanager_manage\", \"plugin_pluginmanager_install\"]}, \"plugin\": \"pluginmanager\"}, {\"key\": \"PLUGIN_SOFTWAREUPDATE_CHECK\", \"name\": \"Software Update: Check\", \"dangerous\": false, \"default_groups\": [\"users\"], \"description\": \"Allows to check for software updates\", \"needs\": {\"role\": [\"plugin_softwareupdate_check\"]}, \"plugin\": \"softwareupdate\"}, {\"key\": \"PLUGIN_SOFTWAREUPDATE_UPDATE\", \"name\": \"Software Update: Update\", \"dangerous\": true, \"default_groups\": [\"admins\"], \"description\": \"Allows to perform software updates\", \"needs\": {\"role\": [\"plugin_softwareupdate_update\"]}, \"plugin\": \"softwareupdate\"}, {\"key\": \"PLUGIN_SOFTWAREUPDATE_CONFIGURE\", \"name\": \"Software Update: Configure\", \"dangerous\": true, \"default_groups\": [\"admins\"], \"description\": \"Allows to configure software update\", \"needs\": {\"role\": [\"plugin_softwareupdate_configure\"]}, \"plugin\": \"softwareupdate\"}]}}",
+      "state": 1
+    },
+    {
+      "type": "message",
+      "timestamp": 1736384482329,
+      "data": "{\"history\": {\"state\": {\"text\": \"Offline\", \"flags\": {\"operational\": false, \"printing\": false, \"cancelling\": false, \"pausing\": false, \"resuming\": false, \"finishing\": false, \"closedOrError\": true, \"error\": false, \"paused\": false, \"ready\": false, \"sdReady\": false}, \"error\": \"\"}, \"job\": {\"file\": {\"name\": null, \"path\": null, \"size\": null, \"origin\": null, \"date\": null}, \"estimatedPrintTime\": null, \"lastPrintTime\": null, \"filament\": {\"length\": null, \"volume\": null}, \"user\": null}, \"currentZ\": null, \"progress\": {\"completion\": null, \"filepos\": null, \"printTime\": null, \"printTimeLeft\": null, \"printTimeLeftOrigin\": null}, \"offsets\": {}, \"resends\": {\"count\": 0, \"ratio\": 0}, \"temps\": [], \"logs\": [], \"messages\": [], \"markings\": [], \"serverTime\": 1736384482.3280828}}",
+      "state": 1
+    },
+    {
+      "type": "message",
+      "timestamp": 1736384482331,
+      "data": "{\"timelapse\": null}",
+      "state": 1
+    },
+    {
+      "type": "message",
+      "timestamp": 1736384482340,
+      "data": "{\"event\": {\"type\": \"UserLoggedIn\", \"payload\": {\"username\": \"root\"}}}",
+      "state": 1
+    },
+    {
+      "type": "message",
+      "timestamp": 1736384482349,
+      "data": "{\"event\": {\"type\": \"UserLoggedIn\", \"payload\": {\"username\": \"root\"}}}",
+      "state": 1
+    },
+    {
+      "type": "message",
+      "timestamp": 1736384482367,
+      "data": "{\"event\": {\"type\": \"UserLoggedIn\", \"payload\": {\"username\": \"root\"}}}",
+      "state": 1
+    },
+    {
+      "type": "message",
+      "timestamp": 1736384482374,
+      "data": "{\"event\": {\"type\": \"UserLoggedIn\", \"payload\": {\"username\": \"root\"}}}",
+      "state": 1
+    },
+    {
+      "type": "stateChange",
+      "timestamp": 1736384482379,
+      "data": {
+        "state": 3
+      },
+      "state": 3
+    },
+    {
+      "type": "close",
+      "timestamp": 1736384482379,
+      "data": {
+        "code": 1006,
+        "reason": {
+          "type": "Buffer",
+          "data": []
+        }
+      },
+      "state": 3
+    },
+    {
+      "type": "stateChange",
+      "timestamp": 1736384482379,
+      "data": {
+        "state": 2
+      },
+      "state": 2
+    }
+  ],
+  "metadata": {
+    "url": "ws://localhost/sockjs/websocket",
+    "totalEvents": 12,
+    "duration": 110
+  }
+}
