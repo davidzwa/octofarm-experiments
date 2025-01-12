@@ -1,0 +1,6 @@
+namespace: fdm-monster
+resources:
+  - deployment-fdm-monster.yaml
+  - ingress.yaml
+  - namespace.yaml
+  - service-fdm-monster.yaml
