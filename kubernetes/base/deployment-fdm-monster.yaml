@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: fdm-monster
+  name: fdm-monster
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fdm-monster
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: fdm-monster
+    spec:
+      containers:
+      - image: fdmmonster/fdm-monster:latest-sqlite
+        name: fdm-monster
+        resources: {}
+        volumeMounts:
+          - name: fdm-monster-media
+            mountPath: /app/media
+          - name: fdm-monster-db
+            mountPath: /app/db
+        env:
+          - name: ENABLE_EXPERIMENTAL_TYPEORM
+            value: "true"
+          - name: DATABASE_PATH
+            value: db
+          - name: DATABASE_FILE
+            value: fdm-monster.sqlite
+        livenessProbe:
+          tcpSocket:
+            port: 4000
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        readinessProbe:
+          tcpSocket:
+            port: 4000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+      volumes:
+        - name: fdm-monster-media
+          emptyDir:
+        - name: fdm-monster-db
+          emptyDir:
+status: {}
